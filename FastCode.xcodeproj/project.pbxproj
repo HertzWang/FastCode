@@ -20,6 +20,8 @@
 		DB5114702248E6C200518FB0 /* SourceEditorCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51146F2248E6C200518FB0 /* SourceEditorCommand.swift */; };
 		DB5114752248E6C200518FB0 /* FastCodePlug-in.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DB51146A2248E6C200518FB0 /* FastCodePlug-in.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DB5114792248E8BC00518FB0 /* HZUserConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB3A79C2018844B005C0A7F /* HZUserConfig.swift */; };
+		DB9C68CF224B73FB00FE8771 /* HZHelpWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9C68CD224B73FB00FE8771 /* HZHelpWindowController.swift */; };
+		DB9C68D0224B73FB00FE8771 /* HZHelpWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB9C68CE224B73FB00FE8771 /* HZHelpWindowController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,8 @@
 		DB51146F2248E6C200518FB0 /* SourceEditorCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceEditorCommand.swift; sourceTree = "<group>"; };
 		DB5114712248E6C200518FB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB5114722248E6C200518FB0 /* HZFastCodePlug_in.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HZFastCodePlug_in.entitlements; sourceTree = "<group>"; };
+		DB9C68CD224B73FB00FE8771 /* HZHelpWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HZHelpWindowController.swift; sourceTree = "<group>"; };
+		DB9C68CE224B73FB00FE8771 /* HZHelpWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HZHelpWindowController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,16 +111,12 @@
 		0BB3A76B201856AD005C0A7F /* HZFastCode */ = {
 			isa = PBXGroup;
 			children = (
+				DB9C68CC224B73E900FE8771 /* Help */,
+				DB9C68CB224B737A00FE8771 /* Supporting Files */,
+				DB9C68CA224B737600FE8771 /* Configuration */,
 				0BB3A76C201856AD005C0A7F /* AppDelegate.swift */,
 				0BB3A76E201856AD005C0A7F /* ViewController.swift */,
-				0BB3A770201856AD005C0A7F /* Assets.xcassets */,
-				0BB3A772201856AD005C0A7F /* Main.storyboard */,
-				0BB3A775201856AD005C0A7F /* Info.plist */,
-				0BB3A776201856AD005C0A7F /* HZFastCode.entitlements */,
-				0BB3A798201879EB005C0A7F /* HZConfigViewController.swift */,
-				0BB3A799201879EB005C0A7F /* HZConfigViewController.xib */,
 				0BB3A79C2018844B005C0A7F /* HZUserConfig.swift */,
-				DB0D99A7224B5C0700F088A6 /* HZConfigModel.swift */,
 			);
 			path = HZFastCode;
 			sourceTree = "<group>";
@@ -138,6 +138,36 @@
 				DB5114722248E6C200518FB0 /* HZFastCodePlug_in.entitlements */,
 			);
 			path = "HZFastCodePlug-in";
+			sourceTree = "<group>";
+		};
+		DB9C68CA224B737600FE8771 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				0BB3A798201879EB005C0A7F /* HZConfigViewController.swift */,
+				0BB3A799201879EB005C0A7F /* HZConfigViewController.xib */,
+				DB0D99A7224B5C0700F088A6 /* HZConfigModel.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		DB9C68CB224B737A00FE8771 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0BB3A770201856AD005C0A7F /* Assets.xcassets */,
+				0BB3A772201856AD005C0A7F /* Main.storyboard */,
+				0BB3A775201856AD005C0A7F /* Info.plist */,
+				0BB3A776201856AD005C0A7F /* HZFastCode.entitlements */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DB9C68CC224B73E900FE8771 /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				DB9C68CD224B73FB00FE8771 /* HZHelpWindowController.swift */,
+				DB9C68CE224B73FB00FE8771 /* HZHelpWindowController.xib */,
+			);
+			path = Help;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,6 +260,7 @@
 			files = (
 				0BB3A79B201879EB005C0A7F /* HZConfigViewController.xib in Resources */,
 				0BB3A771201856AD005C0A7F /* Assets.xcassets in Resources */,
+				DB9C68D0224B73FB00FE8771 /* HZHelpWindowController.xib in Resources */,
 				0BB3A774201856AD005C0A7F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,6 +281,7 @@
 			files = (
 				0BB3A76F201856AD005C0A7F /* ViewController.swift in Sources */,
 				0BB3A79D2018844B005C0A7F /* HZUserConfig.swift in Sources */,
+				DB9C68CF224B73FB00FE8771 /* HZHelpWindowController.swift in Sources */,
 				0BB3A76D201856AD005C0A7F /* AppDelegate.swift in Sources */,
 				DB0D99A8224B5C0700F088A6 /* HZConfigModel.swift in Sources */,
 				0BB3A79A201879EB005C0A7F /* HZConfigViewController.swift in Sources */,

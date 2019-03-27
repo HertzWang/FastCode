@@ -43,8 +43,13 @@ class HZConfigViewController: NSWindowController {
 
         self.keyText.delegate = self
         self.valueText.delegate = self
-            
-        self.valueText.becomeFirstResponder()
+        
+        if isAdd {
+            self.keyText.becomeFirstResponder()
+        } else {
+            self.valueText.becomeFirstResponder()
+        }
+        
     }
 }
 

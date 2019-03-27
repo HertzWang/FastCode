@@ -306,7 +306,7 @@
                                     <items>
                                         <menuItem title="FastCode Help" keyEquivalent="?" id="TC5-7v-lre" userLabel="FastCode Help">
                                             <connections>
-                                                <action selector="showHelp:" target="Ady-hI-5gd" id="CAM-Mr-CzP"/>
+                                                <action selector="showHelpWindow:" target="Voe-Tx-rLC" id="9ch-Jl-z0A"/>
                                             </connections>
                                         </menuItem>
                                     </items>

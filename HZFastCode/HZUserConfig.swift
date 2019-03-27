@@ -8,6 +8,8 @@
 
 import Cocoa
 
+let HZShowHelpWindowNotification = "com.hertzwang.show.help"
+
 let HZUserConfigSuiteName = "group.com.hertzwang.fast-code"
 let MappingKey = "HZMappingKey"
 

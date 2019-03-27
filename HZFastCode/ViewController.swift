@@ -12,21 +12,31 @@ class ViewController: NSViewController {
     // MARK: - Property
     @IBOutlet weak var tableView: NSTableView!
     
-    var configViewConfig: HZConfigViewController!
     var dataModels: [HZConfigModel] = []
+    lazy var configWindow: HZConfigViewController = {
+        let configWindow = HZConfigViewController(windowNibName: NSNib.Name.init("HZConfigViewController"))
+        configWindow.delegate = self
+        
+        return configWindow
+    }()
+    
+    lazy var helpWindow: HZHelpWindowController = {
+        let helpWindow = HZHelpWindowController(windowNibName: NSNib.Name.init("HZHelpWindowController"))
+        
+        return helpWindow
+    }()
     
     // MARK: - Override
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.view.window?.title = "FastCode 配置列表"
         initData()
-        configViewConfig = HZConfigViewController(windowNibName: NSNib.Name.init("HZConfigViewController"))
-        configViewConfig.delegate = self
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.target = self
-        tableView.doubleAction = #selector(tableViewDoubleClick(_:))
+        initView()
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(showHelpWindow),
+                                               name: NSNotification.Name.init(HZShowHelpWindowNotification),
+                                               object: nil)
     }
 
     override var representedObject: Any? {
@@ -48,6 +58,14 @@ class ViewController: NSViewController {
             arr.append(m)
         }
         self.dataModels = arr
+    }
+    
+    /// 初始化界面
+    private func initView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.target = self
+        tableView.doubleAction = #selector(tableViewDoubleClick(_:))
     }
     
     /// 保存数据
@@ -78,8 +96,8 @@ class ViewController: NSViewController {
     @objc func tableViewDoubleClick(_ sender: NSTableView) {
         if sender.clickedRow >= 0 { // 点击item，编辑配置
             let item = dataModels[tableView.selectedRow]
-            self.configViewConfig.showWindow(self)
-            self.configViewConfig.updateViewWith(model: item, isAdd: false)
+            self.configWindow.showWindow(self)
+            self.configWindow.updateViewWith(model: item, isAdd: false)
         } else if sender.clickedColumn == 0 { // 关键字排序
             
         } else if sender.clickedColumn == 1 { // 内容排序
@@ -91,8 +109,8 @@ class ViewController: NSViewController {
     ///
     /// - Parameter sender: 添加按钮
     @IBAction func addConfigAction(_ sender: NSButton) {
-        self.configViewConfig.showWindow(self)
-        self.configViewConfig.updateViewWith(model: HZConfigModel(), isAdd: true)
+        self.configWindow.showWindow(self)
+        self.configWindow.updateViewWith(model: HZConfigModel(), isAdd: true)
     }
     
     /// 导入配置
@@ -180,6 +198,12 @@ class ViewController: NSViewController {
             }
         }
 
+    }
+    
+    /// 显示帮助
+    @objc private func showHelpWindow() {
+        print("show help window")
+        self.helpWindow.showWindow(self)
     }
     
 }
