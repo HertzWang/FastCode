@@ -30,10 +30,22 @@ class HZUserConfig: NSObject {
         }
     }
     
-    func saveMapping(dic: [String: String]){
+    func saveMapping(_ dic: [String : String]) {
         self.sharedUserDefaults.set(dic, forKey: MappingKey)
         self.sharedUserDefaults.synchronize()
         _mapping = dic
     }
     
+    /// 合并配置信息
+    ///
+    /// - Parameter importMap: 导入的配置信息
+    func mergeAndSave(_ importMap: [String : String]) -> [String : String] {
+        var map = importMap
+        map.merge(HZUserConfig.shared.mapping) { (current, old) in old } // 保留之前的
+        // TODO: map 排序
+        
+        HZUserConfig.shared.saveMapping(map)
+        
+        return map
+    }
 }

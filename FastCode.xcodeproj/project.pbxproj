@@ -14,6 +14,7 @@
 		0BB3A79A201879EB005C0A7F /* HZConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB3A798201879EB005C0A7F /* HZConfigViewController.swift */; };
 		0BB3A79B201879EB005C0A7F /* HZConfigViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BB3A799201879EB005C0A7F /* HZConfigViewController.xib */; };
 		0BB3A79D2018844B005C0A7F /* HZUserConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB3A79C2018844B005C0A7F /* HZUserConfig.swift */; };
+		DB0D99A8224B5C0700F088A6 /* HZConfigModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0D99A7224B5C0700F088A6 /* HZConfigModel.swift */; };
 		DB51146B2248E6C200518FB0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BB3A7822018571D005C0A7F /* Cocoa.framework */; };
 		DB51146E2248E6C200518FB0 /* SourceEditorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51146D2248E6C200518FB0 /* SourceEditorExtension.swift */; };
 		DB5114702248E6C200518FB0 /* SourceEditorCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51146F2248E6C200518FB0 /* SourceEditorCommand.swift */; };
@@ -57,6 +58,7 @@
 		0BB3A798201879EB005C0A7F /* HZConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HZConfigViewController.swift; sourceTree = "<group>"; };
 		0BB3A799201879EB005C0A7F /* HZConfigViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HZConfigViewController.xib; sourceTree = "<group>"; };
 		0BB3A79C2018844B005C0A7F /* HZUserConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HZUserConfig.swift; sourceTree = "<group>"; };
+		DB0D99A7224B5C0700F088A6 /* HZConfigModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HZConfigModel.swift; sourceTree = "<group>"; };
 		DB51146A2248E6C200518FB0 /* FastCodePlug-in.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "FastCodePlug-in.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB51146D2248E6C200518FB0 /* SourceEditorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceEditorExtension.swift; sourceTree = "<group>"; };
 		DB51146F2248E6C200518FB0 /* SourceEditorCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceEditorCommand.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				0BB3A798201879EB005C0A7F /* HZConfigViewController.swift */,
 				0BB3A799201879EB005C0A7F /* HZConfigViewController.xib */,
 				0BB3A79C2018844B005C0A7F /* HZUserConfig.swift */,
+				DB0D99A7224B5C0700F088A6 /* HZConfigModel.swift */,
 			);
 			path = HZFastCode;
 			sourceTree = "<group>";
@@ -189,6 +192,11 @@
 					0BB3A768201856AD005C0A7F = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					DB5114692248E6C200518FB0 = {
 						CreatedOnToolsVersion = 10.1;
@@ -243,6 +251,7 @@
 				0BB3A76F201856AD005C0A7F /* ViewController.swift in Sources */,
 				0BB3A79D2018844B005C0A7F /* HZUserConfig.swift in Sources */,
 				0BB3A76D201856AD005C0A7F /* AppDelegate.swift in Sources */,
+				DB0D99A8224B5C0700F088A6 /* HZConfigModel.swift in Sources */,
 				0BB3A79A201879EB005C0A7F /* HZConfigViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
