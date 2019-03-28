@@ -12,6 +12,14 @@ class HZConfigModel {
     var key: String = ""
     var value: String = ""
     
+    class func model(_ key: String, _ value: String) -> HZConfigModel {
+        let model = HZConfigModel();
+        model.key = key
+        model.value = value
+        
+        return model
+    }
+    
     func isEmpty() -> Bool {
         return self.key.isEmpty
     }

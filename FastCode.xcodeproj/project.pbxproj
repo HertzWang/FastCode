@@ -115,8 +115,8 @@
 				DB9C68CB224B737A00FE8771 /* Supporting Files */,
 				DB9C68CA224B737600FE8771 /* Configuration */,
 				0BB3A76C201856AD005C0A7F /* AppDelegate.swift */,
-				0BB3A76E201856AD005C0A7F /* ViewController.swift */,
-				0BB3A79C2018844B005C0A7F /* HZUserConfig.swift */,
+				DB9D5343224C5F8F009DCDAF /* Main */,
+				DB9D5344224C5F9E009DCDAF /* Utils */,
 			);
 			path = HZFastCode;
 			sourceTree = "<group>";
@@ -168,6 +168,22 @@
 				DB9C68CE224B73FB00FE8771 /* HZHelpWindowController.xib */,
 			);
 			path = Help;
+			sourceTree = "<group>";
+		};
+		DB9D5343224C5F8F009DCDAF /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				0BB3A76E201856AD005C0A7F /* ViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		DB9D5344224C5F9E009DCDAF /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				0BB3A79C2018844B005C0A7F /* HZUserConfig.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

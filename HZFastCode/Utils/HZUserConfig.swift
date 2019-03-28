@@ -44,9 +44,9 @@ class HZUserConfig: NSObject {
     func mergeAndSave(_ importMap: [String : String]) -> [String : String] {
         var map = importMap
         map.merge(HZUserConfig.shared.mapping) { (current, old) in old } // 保留之前的
-        // TODO: map 排序
-        
         HZUserConfig.shared.saveMapping(map)
+        
+        // TODO: 合并时冲突提示：“忽略”、“替换”、“取消”
         
         return map
     }

@@ -12,6 +12,7 @@ class ViewController: NSViewController {
     // MARK: - Property
     @IBOutlet weak var tableView: NSTableView!
     
+    var keywordDesc: Bool = false
     var dataModels: [HZConfigModel] = []
     lazy var configWindow: HZConfigViewController = {
         let configWindow = HZConfigViewController(windowNibName: NSNib.Name.init("HZConfigViewController"))
@@ -52,11 +53,10 @@ class ViewController: NSViewController {
         let mapping = map ?? HZUserConfig.shared.mapping
         var arr: [HZConfigModel] = []
         for (key, value) in mapping {
-            let m = HZConfigModel()
-            m.key = key
-            m.value = value
-            arr.append(m)
+            let model = HZConfigModel.model(key, value)
+            arr.append(model)
         }
+        
         self.dataModels = arr
     }
     
@@ -99,9 +99,25 @@ class ViewController: NSViewController {
             self.configWindow.showWindow(self)
             self.configWindow.updateViewWith(model: item, isAdd: false)
         } else if sender.clickedColumn == 0 { // 关键字排序
+            let mapping: [String : String] = HZUserConfig.shared.mapping
+            var keys: [String] = []
+            if keywordDesc {
+                keys = mapping.keys.sorted(by: >)
+            } else {
+                keys = mapping.keys.sorted(by: <)
+            }
             
+            keywordDesc = !keywordDesc
+            
+            dataModels.removeAll()
+            for key in keys {
+                let model = HZConfigModel.model(key, mapping[key] ?? "")
+                dataModels.append(model)
+            }
+            
+            self.tableView.reloadData()
         } else if sender.clickedColumn == 1 { // 内容排序
-            
+            // TODO: 后期完善
         }
     }
     
