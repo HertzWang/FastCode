@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class HZConfigModel {
+class HZConfigModel: NSObject {
     var key: String = ""
     var value: String = ""
     

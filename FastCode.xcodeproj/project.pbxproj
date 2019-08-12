@@ -12,11 +12,13 @@
 		0BB3A771201856AD005C0A7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BB3A770201856AD005C0A7F /* Assets.xcassets */; };
 		0BB3A774201856AD005C0A7F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BB3A772201856AD005C0A7F /* Main.storyboard */; };
 		0BB3A79D2018844B005C0A7F /* HZUserConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB3A79C2018844B005C0A7F /* HZUserConfig.swift */; };
-		1B11E8A022FD5D1300AC78B2 /* iconfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1B11E89F22FD5D1300AC78B2 /* iconfont.ttf */; };
-		1B11E8A222FD5D6C00AC78B2 /* HZIconfontHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B11E8A122FD5D6C00AC78B2 /* HZIconfontHelper.swift */; };
 		1BA9708E23014E0D0085B3A1 /* HZConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA9708C23014E0D0085B3A1 /* HZConfigurationViewController.swift */; };
 		1BA9708F23014E0D0085B3A1 /* HZConfigurationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BA9708D23014E0D0085B3A1 /* HZConfigurationViewController.xib */; };
 		DB0D99A8224B5C0700F088A6 /* HZConfigModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0D99A7224B5C0700F088A6 /* HZConfigModel.swift */; };
+		DB4FA10523018C2D00583898 /* HZEnumNotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4FA10423018C2D00583898 /* HZEnumNotificationModel.swift */; };
+		DB4FA10A2301A20E00583898 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4FA1092301A20E00583898 /* WebKit.framework */; };
+		DB4FA10E2301AF2F00583898 /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = DB4FA10D2301AF2F00583898 /* help.html */; };
+		DB4FA1152301B09600583898 /* html.zip in Resources */ = {isa = PBXBuildFile; fileRef = DB4FA1142301B09600583898 /* html.zip */; };
 		DB51146B2248E6C200518FB0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BB3A7822018571D005C0A7F /* Cocoa.framework */; };
 		DB51146E2248E6C200518FB0 /* SourceEditorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51146D2248E6C200518FB0 /* SourceEditorExtension.swift */; };
 		DB5114702248E6C200518FB0 /* SourceEditorCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51146F2248E6C200518FB0 /* SourceEditorCommand.swift */; };
@@ -60,11 +62,13 @@
 		0BB3A776201856AD005C0A7F /* HZFastCode.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HZFastCode.entitlements; sourceTree = "<group>"; };
 		0BB3A7822018571D005C0A7F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		0BB3A79C2018844B005C0A7F /* HZUserConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HZUserConfig.swift; sourceTree = "<group>"; };
-		1B11E89F22FD5D1300AC78B2 /* iconfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = iconfont.ttf; sourceTree = "<group>"; };
-		1B11E8A122FD5D6C00AC78B2 /* HZIconfontHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HZIconfontHelper.swift; sourceTree = "<group>"; };
 		1BA9708C23014E0D0085B3A1 /* HZConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HZConfigurationViewController.swift; sourceTree = "<group>"; };
 		1BA9708D23014E0D0085B3A1 /* HZConfigurationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HZConfigurationViewController.xib; sourceTree = "<group>"; };
 		DB0D99A7224B5C0700F088A6 /* HZConfigModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HZConfigModel.swift; sourceTree = "<group>"; };
+		DB4FA10423018C2D00583898 /* HZEnumNotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HZEnumNotificationModel.swift; sourceTree = "<group>"; };
+		DB4FA1092301A20E00583898 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		DB4FA10D2301AF2F00583898 /* help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = help.html; sourceTree = "<group>"; };
+		DB4FA1142301B09600583898 /* html.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = html.zip; sourceTree = "<group>"; };
 		DB51146A2248E6C200518FB0 /* FastCodePlug-in.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "FastCodePlug-in.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB51146D2248E6C200518FB0 /* SourceEditorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceEditorExtension.swift; sourceTree = "<group>"; };
 		DB51146F2248E6C200518FB0 /* SourceEditorCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceEditorCommand.swift; sourceTree = "<group>"; };
@@ -79,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB4FA10A2301A20E00583898 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +133,7 @@
 		0BB3A7812018571D005C0A7F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DB4FA1092301A20E00583898 /* WebKit.framework */,
 				0BB3A7822018571D005C0A7F /* Cocoa.framework */,
 			);
 			name = Frameworks;
@@ -151,36 +157,30 @@
 			path = Sections;
 			sourceTree = "<group>";
 		};
-		1B11E89C22FD5CDC00AC78B2 /* Iconfont */ = {
-			isa = PBXGroup;
-			children = (
-				1B11E8A122FD5D6C00AC78B2 /* HZIconfontHelper.swift */,
-			);
-			path = Iconfont;
-			sourceTree = "<group>";
-		};
 		1B11E89D22FD5CF100AC78B2 /* Rescources */ = {
 			isa = PBXGroup;
 			children = (
-				1B11E89E22FD5D0800AC78B2 /* Font */,
+				DB4FA10623019E0200583898 /* html */,
 			);
 			path = Rescources;
-			sourceTree = "<group>";
-		};
-		1B11E89E22FD5D0800AC78B2 /* Font */ = {
-			isa = PBXGroup;
-			children = (
-				1B11E89F22FD5D1300AC78B2 /* iconfont.ttf */,
-			);
-			path = Font;
 			sourceTree = "<group>";
 		};
 		1BA9708B23014DB20085B3A1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				DB0D99A7224B5C0700F088A6 /* HZConfigModel.swift */,
+				DB4FA10423018C2D00583898 /* HZEnumNotificationModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		DB4FA10623019E0200583898 /* html */ = {
+			isa = PBXGroup;
+			children = (
+				DB4FA1142301B09600583898 /* html.zip */,
+				DB4FA10D2301AF2F00583898 /* help.html */,
+			);
+			path = html;
 			sourceTree = "<group>";
 		};
 		DB51146C2248E6C200518FB0 /* HZFastCodePlug-in */ = {
@@ -234,7 +234,6 @@
 		DB9D5344224C5F9E009DCDAF /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				1B11E89C22FD5CDC00AC78B2 /* Iconfont */,
 				0BB3A79C2018844B005C0A7F /* HZUserConfig.swift */,
 			);
 			path = Helpers;
@@ -329,9 +328,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BA9708F23014E0D0085B3A1 /* HZConfigurationViewController.xib in Resources */,
+				DB4FA10E2301AF2F00583898 /* help.html in Resources */,
+				DB4FA1152301B09600583898 /* html.zip in Resources */,
 				0BB3A771201856AD005C0A7F /* Assets.xcassets in Resources */,
 				DB9C68D0224B73FB00FE8771 /* HZHelpWindowController.xib in Resources */,
-				1B11E8A022FD5D1300AC78B2 /* iconfont.ttf in Resources */,
 				0BB3A774201856AD005C0A7F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -355,8 +355,8 @@
 				DB9C68CF224B73FB00FE8771 /* HZHelpWindowController.swift in Sources */,
 				0BB3A76D201856AD005C0A7F /* AppDelegate.swift in Sources */,
 				DB0D99A8224B5C0700F088A6 /* HZConfigModel.swift in Sources */,
-				1B11E8A222FD5D6C00AC78B2 /* HZIconfontHelper.swift in Sources */,
 				1BA9708E23014E0D0085B3A1 /* HZConfigurationViewController.swift in Sources */,
+				DB4FA10523018C2D00583898 /* HZEnumNotificationModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,7 +510,7 @@
 				DEVELOPMENT_TEAM = 64Z9QAXW9D;
 				INFOPLIST_FILE = "$(SRCROOT)/HZFastCode/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hertzwang.fastcode;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -530,7 +530,7 @@
 				DEVELOPMENT_TEAM = 64Z9QAXW9D;
 				INFOPLIST_FILE = "$(SRCROOT)/HZFastCode/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hertzwang.fastcode;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

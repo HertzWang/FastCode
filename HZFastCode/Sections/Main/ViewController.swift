@@ -12,23 +12,18 @@ class ViewController: NSViewController {
     
     // MARK: - Property
     
-    @IBOutlet weak var exportConfigButton: NSButton!
-    @IBOutlet weak var emptyConfigButton: NSButton!
-    @IBOutlet weak var importConfigButton: NSButton!
-    @IBOutlet weak var addConfigButton: NSButton!
-    @IBOutlet weak var helpButton: NSButton!
     @IBOutlet weak var tableView: NSTableView!
     
-    var keywordDesc: Bool = false
-    var dataModels: [HZConfigModel] = []
+    fileprivate var keywordDesc: Bool = false
+    fileprivate var dataModels: [HZConfigModel] = []
     
-    lazy var configViewController: HZConfigurationViewController = {
+    lazy fileprivate var configViewController: HZConfigurationViewController = {
         let configViewController = HZConfigurationViewController.init(nibName: NSNib.Name.init("HZConfigurationViewController"), bundle: Bundle.main)
         configViewController.delegate = self
         return configViewController
     }()
     
-    lazy var helpWindow: HZHelpWindowController = {
+    lazy fileprivate var helpWindow: HZHelpWindowController = {
         let helpWindow = HZHelpWindowController(windowNibName: NSNib.Name.init("HZHelpWindowController"))
         
         return helpWindow
@@ -43,37 +38,14 @@ class ViewController: NSViewController {
         initView()
         
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(showHelpWindow),
-                                               name: NSNotification.Name.init(HZShowHelpWindowNotification),
+                                               selector: #selector(enumNotification),
+                                               name: NSNotification.Name.init(HZEnumNotification),
                                                object: nil)
     }
 
     override var representedObject: Any? {
         didSet {
         // Update the view, if already loaded.
-        }
-    }
-    
-    override func awakeFromNib() {
-        // 更新按钮样式
-        if let iconfont = NSFont.init(name: "iconfont", size: 30) {
-            
-            let buttons = [(HZIconFontStringExportConfig, self.exportConfigButton, "导出"),
-                           (HZIconFontStringEmpty, self.emptyConfigButton, "清空"),
-                           (HZIconFontStringImportConfig, self.importConfigButton, "导入")]
-            for (iconfontString, button, titleString) in buttons {
-                let attr = NSMutableAttributedString.init(string: "\(iconfontString)\n" + titleString)
-                attr.addAttributes([NSAttributedStringKey.font : iconfont],
-                                   range: NSMakeRange(0, iconfontString.count))
-                attr.addAttributes([NSAttributedStringKey.font : NSFont.systemFont(ofSize: 11)],
-                                   range: NSMakeRange(iconfontString.count+1, attr.string.count - iconfontString.count - 1))
-                button?.attributedTitle = attr
-            }
-        }
-        
-        // 隐藏 zoomButton
-        if let zoomButton = NSApplication.shared.keyWindow?.standardWindowButton(.zoomButton) {
-            zoomButton.isHidden = true
         }
     }
     
@@ -114,7 +86,7 @@ class ViewController: NSViewController {
     /// 刷新列表
     ///
     /// - Parameter map: 数据源
-    func refreshTable(_ map: [String : String]) {
+    fileprivate func refreshTable(_ map: [String : String]) {
         initData(map: map)
         self.tableView.reloadData()
     }
@@ -124,7 +96,7 @@ class ViewController: NSViewController {
     /// 双击列表处理
     ///
     /// - Parameter sender: NSTableView
-    @objc func tableViewDoubleClick(_ sender: NSTableView) {
+    @objc fileprivate func tableViewDoubleClick(_ sender: NSTableView) {
         if sender.clickedRow >= 0 { // 点击item，编辑配置
             let item = dataModels[tableView.selectedRow]
             self.configViewController.model(item)
@@ -155,7 +127,7 @@ class ViewController: NSViewController {
     /// 添加配置信息
     ///
     /// - Parameter sender: 添加按钮
-    @IBAction func addConfigAction(_ sender: NSButton) {
+    @IBAction fileprivate func addConfigAction(_ sender: NSButton) {
         self.configViewController.model(HZConfigModel())
         self.presentViewControllerAsSheet(self.configViewController)
     }
@@ -163,7 +135,7 @@ class ViewController: NSViewController {
     /// 删除配置信息
     ///
     /// - Parameter sender: 删除按钮
-    @IBAction func removeConfigAction(_ sender: NSButton) {
+    @IBAction fileprivate func removeConfigAction(_ sender: NSButton) {
         guard self.tableView.selectedRow >= 0 else {
             return
         }
@@ -186,7 +158,7 @@ class ViewController: NSViewController {
     /// 导入配置
     ///
     /// - Parameter sender: 按钮
-    @IBAction func importConfigListAction(_ sender: NSButton) {
+    fileprivate func importConfigListAction() {
         
         let panel = NSOpenPanel()
         panel.resolvesAliases = false
@@ -219,7 +191,7 @@ class ViewController: NSViewController {
     /// 导出配置
     ///
     /// - Parameter sender: 按钮
-    @IBAction func exportConfigListAction(_ sender: NSButton) {
+    fileprivate func exportConfigListAction() {
 
         let savePanel = NSSavePanel()
         savePanel.nameFieldLabel = "文件名"
@@ -250,7 +222,7 @@ class ViewController: NSViewController {
     /// 清空配置
     ///
     /// - Parameter sender: 按钮
-    @IBAction func removeAllConfigAction(_ sender: Any) {
+    fileprivate func emptyConfigAction() {
         let alert = NSAlert()
         alert.addButton(withTitle: "清空")
         alert.addButton(withTitle: "取消") // 默认为取消操作
@@ -270,13 +242,33 @@ class ViewController: NSViewController {
     /// 显示帮助
     ///
     /// - Parameter sender: 按钮
-    @IBAction func helpAction(_ sender: Any) {
-        showHelpWindow()
+    @IBAction fileprivate func helpAction(_ sender: Any) {
+        self.helpWindow.show(self)
     }
     
-    /// 显示帮助
-    @objc private func showHelpWindow() {
-        self.helpWindow.show(self)
+    /// 菜单操作通知
+    @objc private func enumNotification(_ notification: NSNotification) {
+        if let notificationModel = notification.object as? HZEnumNotificationModel {
+            switch notificationModel.type {
+            case .import?: 
+                importConfigListAction()
+                break
+                
+            case .export?:
+                exportConfigListAction()
+                break
+                
+            case .empty?:
+                emptyConfigAction()
+                break
+                
+            case .help?:
+                self.helpWindow.show(self)
+                break
+                
+            default: break
+            }
+        }
     }
     
 }

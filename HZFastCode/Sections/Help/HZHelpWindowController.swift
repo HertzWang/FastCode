@@ -7,12 +7,13 @@
 //
 
 import Cocoa
+import WebKit
 
 class HZHelpWindowController: NSWindowController {
     
     // MARK: - Property
     
-    @IBOutlet weak var clipView: NSClipView!
+    @IBOutlet weak var helpWebView: WebView!
     
     // MARK: - Override
     
@@ -23,7 +24,10 @@ class HZHelpWindowController: NSWindowController {
     }
     
     override func awakeFromNib() {
-        self.clipView.scroll(NSZeroPoint)
+        if let filePath = Bundle.main.path(forResource: "help", ofType: "html") {
+            let url = URL.init(fileURLWithPath: filePath)
+            self.helpWebView.mainFrame.load(URLRequest.init(url: url))
+        }
     }
     
     // MARK: - Public
@@ -32,7 +36,6 @@ class HZHelpWindowController: NSWindowController {
     ///
     /// - Parameter viewController: 主视图
     func show(_ viewController: NSViewController) {
-        self.clipView?.scroll(NSZeroPoint)
         self.window?.center()
         self.showWindow(viewController)
     }
