@@ -3,7 +3,7 @@
 //  FastCode
 //
 //  Created by HertzWang on 2019/3/27.
-//  Copyright © 2019 zhengjiacheng. All rights reserved.
+//  Copyright © 2019 HertzWang. All rights reserved.
 //
 
 import Cocoa

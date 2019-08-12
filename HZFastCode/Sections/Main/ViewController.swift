@@ -9,16 +9,23 @@
 import Cocoa
 
 class ViewController: NSViewController {
+    
     // MARK: - Property
+    
+    @IBOutlet weak var exportConfigButton: NSButton!
+    @IBOutlet weak var emptyConfigButton: NSButton!
+    @IBOutlet weak var importConfigButton: NSButton!
+    @IBOutlet weak var addConfigButton: NSButton!
+    @IBOutlet weak var helpButton: NSButton!
     @IBOutlet weak var tableView: NSTableView!
     
     var keywordDesc: Bool = false
     var dataModels: [HZConfigModel] = []
-    lazy var configWindow: HZConfigViewController = {
-        let configWindow = HZConfigViewController(windowNibName: NSNib.Name.init("HZConfigViewController"))
-        configWindow.delegate = self
-        
-        return configWindow
+    
+    lazy var configViewController: HZConfigurationViewController = {
+        let configViewController = HZConfigurationViewController.init(nibName: NSNib.Name.init("HZConfigurationViewController"), bundle: Bundle.main)
+        configViewController.delegate = self
+        return configViewController
     }()
     
     lazy var helpWindow: HZHelpWindowController = {
@@ -28,6 +35,7 @@ class ViewController: NSViewController {
     }()
     
     // MARK: - Override
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,6 +51,29 @@ class ViewController: NSViewController {
     override var representedObject: Any? {
         didSet {
         // Update the view, if already loaded.
+        }
+    }
+    
+    override func awakeFromNib() {
+        // 更新按钮样式
+        if let iconfont = NSFont.init(name: "iconfont", size: 30) {
+            
+            let buttons = [(HZIconFontStringExportConfig, self.exportConfigButton, "导出"),
+                           (HZIconFontStringEmpty, self.emptyConfigButton, "清空"),
+                           (HZIconFontStringImportConfig, self.importConfigButton, "导入")]
+            for (iconfontString, button, titleString) in buttons {
+                let attr = NSMutableAttributedString.init(string: "\(iconfontString)\n" + titleString)
+                attr.addAttributes([NSAttributedStringKey.font : iconfont],
+                                   range: NSMakeRange(0, iconfontString.count))
+                attr.addAttributes([NSAttributedStringKey.font : NSFont.systemFont(ofSize: 11)],
+                                   range: NSMakeRange(iconfontString.count+1, attr.string.count - iconfontString.count - 1))
+                button?.attributedTitle = attr
+            }
+        }
+        
+        // 隐藏 zoomButton
+        if let zoomButton = NSApplication.shared.keyWindow?.standardWindowButton(.zoomButton) {
+            zoomButton.isHidden = true
         }
     }
     
@@ -96,8 +127,8 @@ class ViewController: NSViewController {
     @objc func tableViewDoubleClick(_ sender: NSTableView) {
         if sender.clickedRow >= 0 { // 点击item，编辑配置
             let item = dataModels[tableView.selectedRow]
-            self.configWindow.showWindow(self)
-            self.configWindow.updateViewWith(model: item, isAdd: false)
+            self.configViewController.model(item)
+            self.presentViewControllerAsSheet(self.configViewController)
         } else if sender.clickedColumn == 0 { // 关键字排序
             let mapping: [String : String] = HZUserConfig.shared.mapping
             var keys: [String] = []
@@ -125,8 +156,31 @@ class ViewController: NSViewController {
     ///
     /// - Parameter sender: 添加按钮
     @IBAction func addConfigAction(_ sender: NSButton) {
-        self.configWindow.showWindow(self)
-        self.configWindow.updateViewWith(model: HZConfigModel(), isAdd: true)
+        self.configViewController.model(HZConfigModel())
+        self.presentViewControllerAsSheet(self.configViewController)
+    }
+    
+    /// 删除配置信息
+    ///
+    /// - Parameter sender: 删除按钮
+    @IBAction func removeConfigAction(_ sender: NSButton) {
+        guard self.tableView.selectedRow >= 0 else {
+            return
+        }
+        
+        let alert = NSAlert()
+        alert.addButton(withTitle: "删除")
+        alert.addButton(withTitle: "取消") // 默认为取消操作
+        alert.messageText = "提示"
+        alert.informativeText = "删除选中配置？"
+        alert.alertStyle = .warning
+        alert.beginSheetModal(for: self.view.window!) { (returnCode) in
+            if returnCode.rawValue == NSApplication.ModalResponse.alertFirstButtonReturn.rawValue {
+                self.dataModels.remove(at: self.tableView.selectedRow)
+                self.tableView.reloadData()
+                self.saveConfig()
+            }
+        }
     }
     
     /// 导入配置
@@ -142,7 +196,7 @@ class ViewController: NSViewController {
         panel.allowedFileTypes = ["json"]
         let result = panel.runModal()
         if result.rawValue == NSFileHandlingPanelOKButton {
-            print("url \(panel.urls)")
+            debugPrint("url \(panel.urls)")
             guard panel.urls.count > 0 else {
                 return;
             }
@@ -159,8 +213,6 @@ class ViewController: NSViewController {
             } catch {
                 // TODO: 异常处理
             }
-            
-            
         }
     }
     
@@ -171,7 +223,7 @@ class ViewController: NSViewController {
 
         let savePanel = NSSavePanel()
         savePanel.nameFieldLabel = "文件名"
-        savePanel.nameFieldStringValue = "FastCode配置文件"
+        savePanel.nameFieldStringValue = "FastCode配置文件" + "\(Int(NSDate().timeIntervalSince1970))"
         savePanel.message = "导出配置信息"
         savePanel.allowsOtherFileTypes = false
         savePanel.allowedFileTypes = ["json"]
@@ -200,31 +252,37 @@ class ViewController: NSViewController {
     /// - Parameter sender: 按钮
     @IBAction func removeAllConfigAction(_ sender: Any) {
         let alert = NSAlert()
-        alert.addButton(withTitle: "取消") // 默认为取消操作
         alert.addButton(withTitle: "清空")
+        alert.addButton(withTitle: "取消") // 默认为取消操作
         alert.messageText = "提示"
         alert.informativeText = "清空所有配置？"
-        alert.alertStyle = .warning
+        alert.alertStyle = .critical
         alert.beginSheetModal(for: self.view.window!) { (returnCode) in
-            if returnCode.rawValue == NSApplication.ModalResponse.alertSecondButtonReturn.rawValue {
+            if returnCode.rawValue == NSApplication.ModalResponse.alertFirstButtonReturn.rawValue {
                 // 清空
                 HZUserConfig.shared.saveMapping([:])
                 self.initData()
                 self.tableView.reloadData()
             }
         }
-
+    }
+    
+    /// 显示帮助
+    ///
+    /// - Parameter sender: 按钮
+    @IBAction func helpAction(_ sender: Any) {
+        showHelpWindow()
     }
     
     /// 显示帮助
     @objc private func showHelpWindow() {
-        print("show help window")
-        self.helpWindow.showWindow(self)
+        self.helpWindow.show(self)
     }
     
 }
 
 // MARK: - NSTableViewDataSource
+
 extension ViewController: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
         return dataModels.count
@@ -232,6 +290,7 @@ extension ViewController: NSTableViewDataSource {
 }
 
 // MARK: - NSTableViewDelegate
+
 extension ViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let key = dataModels[row].key
@@ -249,13 +308,11 @@ extension ViewController: NSTableViewDelegate {
     
 }
 
-// MARK: - HZConfigViewControllerProtocol
-extension ViewController: HZConfigViewControllerProtocol {
-    func modelUpdated(model: HZConfigModel, isAdd: Bool) {
+// MARK: - HZConfigurationViewControllerProtocol
 
-        if isAdd {
-            dataModels.append(model)
-        } else {
+extension ViewController: HZConfigurationViewControllerProtocol {
+    func modifyModel(model: HZConfigModel, isEdit: Bool) {
+        if isEdit {
             if tableView.selectedRow >= 0 {
                 if model.isEmpty() {
                     dataModels.remove(at: tableView.selectedRow)
@@ -263,9 +320,12 @@ extension ViewController: HZConfigViewControllerProtocol {
                     dataModels[tableView.selectedRow] = model
                 }
             }
+        } else {
+            dataModels.append(model)
         }
         
         self.tableView.reloadData()
         saveConfig()
+        self.configViewController.dismiss(nil)
     }
 }

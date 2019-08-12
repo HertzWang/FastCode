@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="HZHelpWindowController" customModule="FastCode" customModuleProvider="target">
             <connections>
+                <outlet property="clipView" destination="dyu-1j-HJ9" id="QXl-xd-Frv"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -15,21 +16,22 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="FastCode 使用帮助" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="568" height="2438"/>
-            <rect key="screenRect" x="-336" y="800" width="1920" height="1057"/>
+            <rect key="contentRect" x="196" y="240" width="568" height="1613"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
+            <value key="minSize" type="size" width="568" height="600"/>
+            <value key="maxSize" type="size" width="568" height="600"/>
             <view key="contentView" wantsLayer="YES" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="568" height="2438"/>
+                <rect key="frame" x="0.0" y="0.0" width="568" height="1613"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8zX-kp-xN9">
-                        <rect key="frame" x="0.0" y="0.0" width="568" height="2438"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="1613"/>
                         <clipView key="contentView" id="dyu-1j-HJ9">
-                            <rect key="frame" x="1" y="1" width="551" height="2421"/>
+                            <rect key="frame" x="1" y="1" width="566" height="1611"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <view translatesAutoresizingMaskIntoConstraints="NO" id="Q4V-1o-pfu">
-                                    <rect key="frame" x="0.0" y="446" width="551" height="1975"/>
+                                    <rect key="frame" x="0.0" y="-364" width="566" height="1975"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GE2-jf-y0J">
                                             <rect key="frame" x="8" y="1211" width="300" height="19"/>
@@ -40,7 +42,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Ua-bZ-nBt">
-                                            <rect key="frame" x="18" y="1189" width="535" height="17"/>
+                                            <rect key="frame" x="18" y="1189" width="550" height="17"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="1. 打开系统偏好设置" id="8yi-in-2VA">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -56,7 +58,7 @@
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Preferences" id="JHO-f1-cuS"/>
                                         </imageView>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MJe-oZ-2mH">
-                                            <rect key="frame" x="18" y="883" width="100" height="17"/>
+                                            <rect key="frame" x="18" y="883" width="99" height="17"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="2. 进入【扩展】" id="RDd-lo-C16">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -72,7 +74,7 @@
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="XcodeSourceEditor" id="8iK-WT-gRS"/>
                                         </imageView>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4dg-dB-4Lj">
-                                            <rect key="frame" x="18" y="577" width="270" height="17"/>
+                                            <rect key="frame" x="18" y="577" width="263" height="17"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="3. 点击【Xcode Source Editor】，勾选扩展" id="Ejf-2c-dlM">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -88,7 +90,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GCa-Wc-NWq">
-                                            <rect key="frame" x="18" y="505" width="203" height="17"/>
+                                            <rect key="frame" x="18" y="505" width="202" height="17"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="1. 启动Xcode（已启动需要重启）" id="Ldg-eb-ZSB">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -96,7 +98,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rtr-5Q-CGw">
-                                            <rect key="frame" x="18" y="483" width="414" height="17"/>
+                                            <rect key="frame" x="18" y="483" width="406" height="17"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="2. 点击【Xcode】-&gt;【Preferences...】(快捷键⌘,)进入偏好配置界面" id="IJI-Kj-y4Y">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -104,7 +106,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vp0-Ix-zGV">
-                                            <rect key="frame" x="18" y="461" width="127" height="17"/>
+                                            <rect key="frame" x="18" y="461" width="126" height="17"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="3. 设置快捷键，如：" id="O7C-f5-mZ2">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -144,7 +146,7 @@
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="FastCodeList1" id="Yn6-bv-TQF"/>
                                         </imageView>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JSo-r0-Ju4">
-                                            <rect key="frame" x="18" y="1697" width="392" height="17"/>
+                                            <rect key="frame" x="18" y="1697" width="391" height="17"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="2. 编辑【关键字】和【内容】，完成后点击左上关闭（自动保存）" id="vFw-uV-V9E">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -160,7 +162,7 @@
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="FastCodeConfig" id="Usj-Ot-Kdo"/>
                                         </imageView>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gJs-WQ-RDb">
-                                            <rect key="frame" x="18" y="1456" width="181" height="17"/>
+                                            <rect key="frame" x="18" y="1456" width="179" height="17"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="3. 双击Item再次进入编辑界面" id="gaF-1d-KZC">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -184,7 +186,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JFj-vl-S2G">
-                                            <rect key="frame" x="18" y="82" width="256" height="17"/>
+                                            <rect key="frame" x="18" y="82" width="255" height="17"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="1. 在Xcode文件任意单行中输入【关键字】" id="bIM-ZT-YL6">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -192,7 +194,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a2w-2M-Yf3">
-                                            <rect key="frame" x="18" y="60" width="531" height="17"/>
+                                            <rect key="frame" x="18" y="60" width="515" height="17"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="2. 按下设定的快捷键，或执行【Editor】-&gt;【FastCodePlug-in】-&gt;【Generate Code】" id="WDT-iX-5Nz">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -258,11 +260,11 @@
                             </constraints>
                         </clipView>
                         <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="DE2-da-J6d">
-                            <rect key="frame" x="1" y="2422" width="551" height="15"/>
+                            <rect key="frame" x="1" y="1596" width="566" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="VRw-UT-6K4">
-                            <rect key="frame" x="552" y="1" width="15" height="2421"/>
+                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="VRw-UT-6K4">
+                            <rect key="frame" x="551" y="1" width="16" height="1611"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
@@ -277,15 +279,15 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="174" y="1102"/>
+            <point key="canvasLocation" x="174" y="1308.5"/>
         </window>
     </objects>
     <resources>
-        <image name="FastCodeConfig" width="482" height="334"/>
-        <image name="FastCodeList1" width="479" height="290"/>
-        <image name="FastCodeList2" width="478" height="291"/>
-        <image name="KeyBindings" width="800" height="554"/>
-        <image name="Preferences" width="670" height="596"/>
-        <image name="XcodeSourceEditor" width="671" height="509"/>
+        <image name="FastCodeConfig" width="964" height="668"/>
+        <image name="FastCodeList1" width="958" height="580"/>
+        <image name="FastCodeList2" width="956" height="582"/>
+        <image name="KeyBindings" width="1600" height="1108"/>
+        <image name="Preferences" width="1340" height="1192"/>
+        <image name="XcodeSourceEditor" width="1342" height="1018"/>
     </resources>
 </document>
