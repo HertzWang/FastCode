@@ -14,6 +14,7 @@ class HZHelpWindowController: NSWindowController {
     // MARK: - Property
     
     @IBOutlet weak var helpWebView: WebView!
+    @IBOutlet weak var webView: WKWebView!
     
     // MARK: - Override
     
@@ -26,7 +27,13 @@ class HZHelpWindowController: NSWindowController {
     override func awakeFromNib() {
         if let filePath = Bundle.main.path(forResource: "help", ofType: "html") {
             let url = URL.init(fileURLWithPath: filePath)
-            self.helpWebView.mainFrame.load(URLRequest.init(url: url))
+            let request = URLRequest.init(url: url)
+            self.helpWebView.mainFrame.load(request)
+            // TODO: 使用 WKWebView
+//            if  let htmlString = try? String.init(contentsOfFile: filePath, encoding: String.Encoding.utf8) {
+//                self.webView.loadHTMLString(htmlString, baseURL: nil)
+//            }
+            
         }
     }
     
