@@ -25,7 +25,7 @@ class HZHelpWindowController: NSWindowController {
     }
     
     override func awakeFromNib() {
-        if let filePath = Bundle.main.path(forResource: "help", ofType: "html") {
+        if let filePath = Bundle.main.path(forResource: "help_html/help", ofType: "html") {
             let url = URL.init(fileURLWithPath: filePath)
             let request = URLRequest.init(url: url)
             self.helpWebView.mainFrame.load(request)

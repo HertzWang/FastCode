@@ -7,15 +7,34 @@
 //
 
 import Cocoa
+import WebKit
 
 class ViewController: NSViewController {
     
     // MARK: - Property
     
-    @IBOutlet weak var tableView: NSTableView!
+    @IBOutlet private weak var tableView: NSTableView!
+    @IBOutlet fileprivate var contentTextView: NSTextView!
+    @IBOutlet weak var codeWebView: WebView!
     
     fileprivate var keywordDesc: Bool = false
     fileprivate var dataModels: [HZConfigModel] = []
+    fileprivate var helpRequest: URLRequest? {
+        if let filePath = Bundle.main.path(forResource: "help_html/help", ofType: "html") {
+            let url = URL.init(fileURLWithPath: filePath)
+            let request = URLRequest.init(url: url)
+            return request
+        }
+        return nil
+    }
+    fileprivate var showCodeRequest: URLRequest? {
+        if let filePath = Bundle.main.path(forResource: "code_html/code", ofType: "html") {
+            let url = URL.init(fileURLWithPath: filePath)
+            let request = URLRequest.init(url: url)
+            return request
+        }
+        return nil
+    }
     
     lazy fileprivate var configViewController: HZConfigurationViewController = {
         let configViewController = HZConfigurationViewController.init(nibName: NSNib.Name.init("HZConfigurationViewController"), bundle: Bundle.main)
@@ -43,6 +62,18 @@ class ViewController: NSViewController {
                                                object: nil)
     }
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    
+        guard self.codeWebView.mainFrameURL == nil else {
+            return
+        }
+        
+        if let request = self.helpRequest {
+            self.codeWebView.mainFrame.load(request)
+        }
+    }
+    
     override var representedObject: Any? {
         didSet {
         // Update the view, if already loaded.
@@ -68,7 +99,6 @@ class ViewController: NSViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.target = self
-        tableView.doubleAction = #selector(tableViewDoubleClick(_:))
     }
     
     /// 保存数据
@@ -92,37 +122,6 @@ class ViewController: NSViewController {
     }
     
     // MARK: -  Action
-    
-    /// 双击列表处理
-    ///
-    /// - Parameter sender: NSTableView
-    @objc fileprivate func tableViewDoubleClick(_ sender: NSTableView) {
-        if sender.clickedRow >= 0 { // 点击item，编辑配置
-            let item = dataModels[tableView.selectedRow]
-            self.configViewController.model(item)
-            self.presentViewControllerAsSheet(self.configViewController)
-        } else if sender.clickedColumn == 0 { // 关键字排序
-            let mapping: [String : String] = HZUserConfig.shared.mapping
-            var keys: [String] = []
-            if keywordDesc {
-                keys = mapping.keys.sorted(by: >)
-            } else {
-                keys = mapping.keys.sorted(by: <)
-            }
-            
-            keywordDesc = !keywordDesc
-            
-            dataModels.removeAll()
-            for key in keys {
-                let model = HZConfigModel.model(key, mapping[key] ?? "")
-                dataModels.append(model)
-            }
-            
-            self.tableView.reloadData()
-        } else if sender.clickedColumn == 1 { // 内容排序
-            // TODO: 后期完善
-        }
-    }
     
     /// 添加配置信息
     ///
@@ -153,6 +152,19 @@ class ViewController: NSViewController {
                 self.saveConfig()
             }
         }
+    }
+    
+    /// 编辑配置信息
+    ///
+    /// - Parameter sender: 编辑按钮
+    @IBAction func editConfigAction(_ sender: NSButton) {
+        guard self.tableView.selectedRow >= 0 else {
+            return
+        }
+        
+        let item = dataModels[tableView.selectedRow]
+        self.configViewController.model(item)
+        self.presentViewControllerAsSheet(self.configViewController)
     }
     
     /// 导入配置
@@ -246,6 +258,8 @@ class ViewController: NSViewController {
         self.helpWindow.show(self)
     }
     
+    // MARK: - Notification
+    
     /// 菜单操作通知
     @objc private func enumNotification(_ notification: NSNotification) {
         if let notificationModel = notification.object as? HZEnumNotificationModel {
@@ -284,12 +298,58 @@ extension ViewController: NSTableViewDataSource {
 // MARK: - NSTableViewDelegate
 
 extension ViewController: NSTableViewDelegate {
-    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        let key = dataModels[row].key
-        let value = dataModels[row].value
+    
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        let tableView = notification.object as! NSTableView
+        if (tableView.selectedRow < 0) {
+            self.contentTextView.string = ""
+            self.codeWebView.isHidden = false
+            return
+        }
         
-        let cellIdentifier = tableColumn == tableView.tableColumns[0] ? "Key" : "Value"
-        let text = tableColumn == tableView.tableColumns[0] ? key : value
+        let item = dataModels[tableView.selectedRow]
+        self.contentTextView.string = item.value
+        self.codeWebView.isHidden = true
+        
+//        if let request = self.showCodeRequest {
+//            if self.codeWebView.mainFrameURL != request.url?.absoluteString {
+//                self.codeWebView.mainFrame.load(request)
+//            }
+//        }
+//
+//        let js = "showCode(\'\(item.value)\')"
+//        self.codeWebView?.stringByEvaluatingJavaScript(from: js)
+    }
+    
+    func tableView(_ tableView: NSTableView, typeSelectStringFor tableColumn: NSTableColumn?, row: Int) -> String? {
+        debugPrint("typeSelectStringFor")
+        
+        return nil
+    }
+    
+    func tableView(_ tableView: NSTableView, didClick tableColumn: NSTableColumn) {
+        let mapping: [String : String] = HZUserConfig.shared.mapping
+        var keys: [String] = []
+        if keywordDesc {
+            keys = mapping.keys.sorted(by: >)
+        } else {
+            keys = mapping.keys.sorted(by: <)
+        }
+        
+        keywordDesc = !keywordDesc
+        
+        dataModels.removeAll()
+        for key in keys {
+            let model = HZConfigModel.model(key, mapping[key] ?? "")
+            dataModels.append(model)
+        }
+        
+        self.tableView.reloadData()
+    }
+    
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        let cellIdentifier = "Key"
+        let text = dataModels[row].key
         
         if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier.init(cellIdentifier), owner: self) as? NSTableCellView{
             cell.textField?.stringValue = text
@@ -297,7 +357,6 @@ extension ViewController: NSTableViewDelegate {
         }
         return nil
     }
-    
 }
 
 // MARK: - HZConfigurationViewControllerProtocol
