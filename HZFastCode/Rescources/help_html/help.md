@@ -33,7 +33,12 @@
 ### 第四步：使用
 
 1. 在Xcode文件任意单行中输入【关键字】
+
+	![Input Keyworld](./img/6.png)
+	
 2. 按下设定的快捷键，或执行【Editor】->【FastCodePlug-in】->【Generate Code】
+
+	![Generate](./img/7.png)
 
 
 
