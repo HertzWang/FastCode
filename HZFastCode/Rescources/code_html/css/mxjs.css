@@ -1,9 +1,8 @@
 @charset "utf-8";
 
 body {
-font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
-background: url(../img/bg-1.svg) repeat-y top center;
-background-size: cover;
+    background-color: #333;
+    background-size: cover;
 }
 .mxScroll {
 	overflow-y: scroll;
@@ -47,14 +46,15 @@ background:#FF0BEE;
 	border-bottom: 1px solid  rgb(56, 56, 56);
 	padding-bottom: 25px;
 }
+
 .jsbg {
-	background: #23241F;
-	float: left;
-	margin-top: 35px;
-	width: 100%;
-	border-radius: 9px;
-	border: 4px dashed #516877;
+    float: left;
+    width: 300%;
+    background-color: transparent;
+    margin-top: -20px;
+    padding-left: 10px;
 }
+
 .jsbg > div > pre {
-	max-height: 370px;
+	max-height: 510px;
 }

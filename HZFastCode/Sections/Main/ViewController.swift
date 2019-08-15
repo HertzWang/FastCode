@@ -308,7 +308,7 @@ extension ViewController: NSTableViewDelegate {
     func tableViewSelectionDidChange(_ notification: Notification) {
         let tableView = notification.object as! NSTableView
         if (tableView.selectedRow < 0) {
-            self.codeWebView.isHidden = false
+            self.codeWebView.mainFrame.load(self.helpRequest!)
             return
         }
         
@@ -316,12 +316,6 @@ extension ViewController: NSTableViewDelegate {
         if let html = self.htmlCode?.replacingOccurrences(of: "SHOW_CODE_PLACEHOLDER", with: item.value) {
             self.codeWebView.mainFrame.loadHTMLString(html, baseURL: URL.init(fileURLWithPath: self.showCodeFilePath!))
         }
-    }
-    
-    func tableView(_ tableView: NSTableView, typeSelectStringFor tableColumn: NSTableColumn?, row: Int) -> String? {
-        debugPrint("typeSelectStringFor")
-        
-        return nil
     }
     
     func tableView(_ tableView: NSTableView, didClick tableColumn: NSTableColumn) {
