@@ -14,7 +14,6 @@ class ViewController: NSViewController {
     // MARK: - Property
     
     @IBOutlet private weak var tableView: NSTableView!
-    @IBOutlet fileprivate var contentTextView: NSTextView!
     @IBOutlet weak var codeWebView: WebView!
     
     fileprivate var keywordDesc: Bool = false
@@ -27,11 +26,18 @@ class ViewController: NSViewController {
         }
         return nil
     }
+    fileprivate var showCodeFilePath: String? = Bundle.main.path(forResource: "code_html/code", ofType: "html")
     fileprivate var showCodeRequest: URLRequest? {
-        if let filePath = Bundle.main.path(forResource: "code_html/code", ofType: "html") {
+        if let filePath = self.showCodeFilePath {
             let url = URL.init(fileURLWithPath: filePath)
             let request = URLRequest.init(url: url)
             return request
+        }
+        return nil
+    }
+    fileprivate var htmlCode : String? {
+        if let filePath = self.showCodeFilePath {
+            return try? String.init(contentsOfFile: filePath)
         }
         return nil
     }
@@ -302,23 +308,14 @@ extension ViewController: NSTableViewDelegate {
     func tableViewSelectionDidChange(_ notification: Notification) {
         let tableView = notification.object as! NSTableView
         if (tableView.selectedRow < 0) {
-            self.contentTextView.string = ""
             self.codeWebView.isHidden = false
             return
         }
         
         let item = dataModels[tableView.selectedRow]
-        self.contentTextView.string = item.value
-        self.codeWebView.isHidden = true
-        
-//        if let request = self.showCodeRequest {
-//            if self.codeWebView.mainFrameURL != request.url?.absoluteString {
-//                self.codeWebView.mainFrame.load(request)
-//            }
-//        }
-//
-//        let js = "showCode(\'\(item.value)\')"
-//        self.codeWebView?.stringByEvaluatingJavaScript(from: js)
+        if let html = self.htmlCode?.replacingOccurrences(of: "SHOW_CODE_PLACEHOLDER", with: item.value) {
+            self.codeWebView.mainFrame.loadHTMLString(html, baseURL: URL.init(fileURLWithPath: self.showCodeFilePath!))
+        }
     }
     
     func tableView(_ tableView: NSTableView, typeSelectStringFor tableColumn: NSTableColumn?, row: Int) -> String? {
