@@ -12,6 +12,7 @@
 		0BB3A771201856AD005C0A7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BB3A770201856AD005C0A7F /* Assets.xcassets */; };
 		0BB3A774201856AD005C0A7F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BB3A772201856AD005C0A7F /* Main.storyboard */; };
 		0BB3A79D2018844B005C0A7F /* HZUserConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB3A79C2018844B005C0A7F /* HZUserConfig.swift */; };
+		1B2A73CC2306B1AE00C8E202 /* HZAppMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2A73CB2306B1AE00C8E202 /* HZAppMacro.swift */; };
 		1BA9708E23014E0D0085B3A1 /* HZConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA9708C23014E0D0085B3A1 /* HZConfigurationViewController.swift */; };
 		1BA9708F23014E0D0085B3A1 /* HZConfigurationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BA9708D23014E0D0085B3A1 /* HZConfigurationViewController.xib */; };
 		1BA970A32303FFED0085B3A1 /* code_html in Resources */ = {isa = PBXBuildFile; fileRef = 1BA970A22303FFED0085B3A1 /* code_html */; };
@@ -62,6 +63,7 @@
 		0BB3A776201856AD005C0A7F /* HZFastCode.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HZFastCode.entitlements; sourceTree = "<group>"; };
 		0BB3A7822018571D005C0A7F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		0BB3A79C2018844B005C0A7F /* HZUserConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HZUserConfig.swift; sourceTree = "<group>"; };
+		1B2A73CB2306B1AE00C8E202 /* HZAppMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HZAppMacro.swift; sourceTree = "<group>"; };
 		1BA9708C23014E0D0085B3A1 /* HZConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HZConfigurationViewController.swift; sourceTree = "<group>"; };
 		1BA9708D23014E0D0085B3A1 /* HZConfigurationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HZConfigurationViewController.xib; sourceTree = "<group>"; };
 		1BA970A22303FFED0085B3A1 /* code_html */ = {isa = PBXFileReference; lastKnownFileType = folder; path = code_html; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				1B11E89B22FD477B00AC78B2 /* Sections */,
 				1BA9708B23014DB20085B3A1 /* Models */,
 				DB9D5344224C5F9E009DCDAF /* Helpers */,
+				1B2A73CA2306B17700C8E202 /* Macro */,
 				1B11E89D22FD5CF100AC78B2 /* Rescources */,
 				DB9C68CB224B737A00FE8771 /* Supporting Files */,
 			);
@@ -164,6 +167,14 @@
 				1BA970A22303FFED0085B3A1 /* code_html */,
 			);
 			path = Rescources;
+			sourceTree = "<group>";
+		};
+		1B2A73CA2306B17700C8E202 /* Macro */ = {
+			isa = PBXGroup;
+			children = (
+				1B2A73CB2306B1AE00C8E202 /* HZAppMacro.swift */,
+			);
+			path = Macro;
 			sourceTree = "<group>";
 		};
 		1BA9708B23014DB20085B3A1 /* Models */ = {
@@ -342,6 +353,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B2A73CC2306B1AE00C8E202 /* HZAppMacro.swift in Sources */,
 				0BB3A76F201856AD005C0A7F /* ViewController.swift in Sources */,
 				0BB3A79D2018844B005C0A7F /* HZUserConfig.swift in Sources */,
 				DB9C68CF224B73FB00FE8771 /* HZHelpWindowController.swift in Sources */,

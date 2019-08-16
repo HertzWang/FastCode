@@ -313,7 +313,7 @@ extension ViewController: NSTableViewDelegate {
         }
         
         let item = dataModels[tableView.selectedRow]
-        if let html = self.htmlCode?.replacingOccurrences(of: "SHOW_CODE_PLACEHOLDER", with: item.value) {
+        if let html = self.htmlCode?.replacingOccurrences(of: kHZCodeShowPlaceholderText, with: item.value) {
             self.codeWebView.mainFrame.loadHTMLString(html, baseURL: URL.init(fileURLWithPath: self.showCodeFilePath!))
         }
     }

@@ -307,7 +307,6 @@
                         <rect key="contentRect" x="561" y="369" width="668" height="598"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <value key="minSize" type="size" width="668" height="598"/>
-                        <value key="maxSize" type="size" width="668" height="598"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
                         </connections>
@@ -439,9 +438,9 @@
                                     <action selector="helpAction:" target="XfG-lQ-9wD" id="A3A-Mg-sRe"/>
                                 </connections>
                             </button>
-                            <webView translatesAutoresizingMaskIntoConstraints="NO" id="g4z-u1-D4A">
+                            <webView maintainsBackForwardList="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g4z-u1-D4A">
                                 <rect key="frame" x="230" y="59" width="416" height="517"/>
-                                <webPreferences key="preferences" defaultFontSize="16" defaultFixedFontSize="13" minimumFontSize="0">
+                                <webPreferences key="preferences" defaultFontSize="16" defaultFixedFontSize="13" minimumFontSize="0" plugInsEnabled="NO" javaEnabled="NO" javaScriptCanOpenWindowsAutomatically="NO" loadsImagesAutomatically="NO" allowsAnimatedImages="NO" allowsAnimatedImageLooping="NO">
                                     <nil key="identifier"/>
                                 </webPreferences>
                             </webView>
