@@ -443,6 +443,9 @@
                                 <webPreferences key="preferences" defaultFontSize="16" defaultFixedFontSize="13" minimumFontSize="0" plugInsEnabled="NO" javaEnabled="NO" javaScriptCanOpenWindowsAutomatically="NO" loadsImagesAutomatically="NO" allowsAnimatedImages="NO" allowsAnimatedImageLooping="NO">
                                     <nil key="identifier"/>
                                 </webPreferences>
+                                <connections>
+                                    <outlet property="UIDelegate" destination="XfG-lQ-9wD" id="e6X-s0-306"/>
+                                </connections>
                             </webView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ptd-Vm-gak">
                                 <rect key="frame" x="68" y="58" width="25" height="22"/>
@@ -457,6 +460,7 @@
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="g4z-u1-D4A" secondAttribute="trailing" constant="22" id="1SG-Dc-COm"/>
+                            <constraint firstItem="g4z-u1-D4A" firstAttribute="top" secondItem="lYM-S8-WXY" secondAttribute="top" id="2XN-tc-GiC"/>
                             <constraint firstItem="3ul-1d-OVl" firstAttribute="height" secondItem="VmQ-j0-vfZ" secondAttribute="height" id="3tU-Wh-R5V"/>
                             <constraint firstAttribute="trailing" secondItem="quH-nI-w0c" secondAttribute="trailing" constant="22" id="6Gr-UH-Y1H"/>
                             <constraint firstItem="nWk-Tg-e6F" firstAttribute="trailing" secondItem="lYM-S8-WXY" secondAttribute="trailing" id="7cy-Aj-6L9"/>
@@ -470,13 +474,12 @@
                             <constraint firstItem="nWk-Tg-e6F" firstAttribute="leading" secondItem="ptd-Vm-gak" secondAttribute="trailing" constant="-1" id="VZl-at-9hJ"/>
                             <constraint firstItem="3ul-1d-OVl" firstAttribute="width" secondItem="VmQ-j0-vfZ" secondAttribute="width" id="ZLr-DS-BK9"/>
                             <constraint firstItem="3ul-1d-OVl" firstAttribute="leading" secondItem="VmQ-j0-vfZ" secondAttribute="trailing" constant="-1" id="Zwz-jI-eTd"/>
+                            <constraint firstItem="lYM-S8-WXY" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="22" id="deW-n2-mxb"/>
                             <constraint firstItem="ptd-Vm-gak" firstAttribute="centerY" secondItem="VmQ-j0-vfZ" secondAttribute="centerY" id="ed8-6M-Zkp"/>
                             <constraint firstItem="quH-nI-w0c" firstAttribute="top" secondItem="g4z-u1-D4A" secondAttribute="bottom" constant="16" id="h3i-ro-qgD"/>
-                            <constraint firstItem="g4z-u1-D4A" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="22" id="jov-7L-8Vc"/>
                             <constraint firstItem="nWk-Tg-e6F" firstAttribute="height" secondItem="3ul-1d-OVl" secondAttribute="height" id="k9F-Pr-3bt"/>
                             <constraint firstItem="VmQ-j0-vfZ" firstAttribute="top" secondItem="lYM-S8-WXY" secondAttribute="bottom" constant="-1" id="oqA-C4-BSE"/>
                             <constraint firstItem="VmQ-j0-vfZ" firstAttribute="leading" secondItem="lYM-S8-WXY" secondAttribute="leading" id="soH-pF-A7g"/>
-                            <constraint firstItem="lYM-S8-WXY" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="22" id="wlP-D0-std"/>
                             <constraint firstItem="3ul-1d-OVl" firstAttribute="centerY" secondItem="VmQ-j0-vfZ" secondAttribute="centerY" id="x0I-vk-Xcs"/>
                             <constraint firstItem="lYM-S8-WXY" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="yjY-Tg-ziq"/>
                         </constraints>
@@ -488,7 +491,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="118" y="1176"/>
+            <point key="canvasLocation" x="118" y="1324"/>
         </scene>
     </scenes>
     <resources>

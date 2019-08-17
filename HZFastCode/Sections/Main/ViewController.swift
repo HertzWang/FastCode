@@ -350,6 +350,15 @@ extension ViewController: NSTableViewDelegate {
     }
 }
 
+// MARK: - WebUIDelegate
+
+extension ViewController: WebUIDelegate {
+    // 禁用右键
+    func webView(_ sender: WebView!, contextMenuItemsForElement element: [AnyHashable : Any]!, defaultMenuItems: [Any]!) -> [Any]! {
+        return []
+    }
+}
+
 // MARK: - HZConfigurationViewControllerProtocol
 
 extension ViewController: HZConfigurationViewControllerProtocol {
