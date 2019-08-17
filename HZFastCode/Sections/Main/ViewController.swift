@@ -15,9 +15,11 @@ class ViewController: NSViewController {
     
     @IBOutlet private weak var tableView: NSTableView!
     @IBOutlet weak var codeWebView: WebView!
+    @IBOutlet weak var searchField: NSSearchField!
     
     fileprivate var keywordDesc: Bool = false
     fileprivate var dataModels: [HZConfigModel] = []
+    fileprivate var dataArray: [HZConfigModel] = []
     fileprivate var helpRequest: URLRequest? {
         if let filePath = Bundle.main.path(forResource: "help_html/help", ofType: "html") {
             let url = URL.init(fileURLWithPath: filePath)
@@ -98,6 +100,7 @@ class ViewController: NSViewController {
         }
         
         self.dataModels = arr
+        self.dataArray = self.dataModels
     }
     
     /// 初始化界面
@@ -120,11 +123,9 @@ class ViewController: NSViewController {
     }
     
     /// 刷新列表
-    ///
-    /// - Parameter map: 数据源
-    fileprivate func refreshTable(_ map: [String : String]) {
-        initData(map: map)
+    fileprivate func reloadData() {
         self.tableView.reloadData()
+        self.codeWebView.mainFrame.load(self.helpRequest!)
     }
     
     // MARK: -  Action
@@ -153,9 +154,14 @@ class ViewController: NSViewController {
         alert.alertStyle = .warning
         alert.beginSheetModal(for: self.view.window!) { (returnCode) in
             if returnCode.rawValue == NSApplication.ModalResponse.alertFirstButtonReturn.rawValue {
-                self.dataModels.remove(at: self.tableView.selectedRow)
-                self.tableView.reloadData()
+                let selectedRow = self.tableView.selectedRow
+                let removeKey = self.dataArray[selectedRow].key
+                self.dataModels.removeAll(where: { (configModel) -> Bool in
+                    return (configModel.key.elementsEqual(removeKey))
+                })
                 self.saveConfig()
+                self.dataArray.remove(at: selectedRow)
+                self.reloadData()
             }
         }
     }
@@ -168,7 +174,7 @@ class ViewController: NSViewController {
             return
         }
         
-        let item = dataModels[tableView.selectedRow]
+        let item = self.dataArray[self.tableView.selectedRow]
         self.configViewController.model(item)
         self.presentViewControllerAsSheet(self.configViewController)
     }
@@ -198,7 +204,8 @@ class ViewController: NSViewController {
                 
                 if let inputMap = json as? [String: String] {
                     let map = HZUserConfig.shared.mergeAndSave(inputMap)
-                    refreshTable(map)
+                    initData(map: map)
+                    self.reloadData()
                 }
             } catch {
                 // TODO: 异常处理
@@ -252,7 +259,7 @@ class ViewController: NSViewController {
                 // 清空
                 HZUserConfig.shared.saveMapping([:])
                 self.initData()
-                self.tableView.reloadData()
+                self.reloadData()
             }
         }
     }
@@ -297,7 +304,7 @@ class ViewController: NSViewController {
 
 extension ViewController: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return dataModels.count
+        return self.dataArray.count
     }
 }
 
@@ -312,7 +319,7 @@ extension ViewController: NSTableViewDelegate {
             return
         }
         
-        let item = dataModels[tableView.selectedRow]
+        let item = self.dataArray[self.tableView.selectedRow]
         if let html = self.htmlCode?.replacingOccurrences(of: kHZCodeShowPlaceholderText, with: item.value) {
             self.codeWebView.mainFrame.loadHTMLString(html, baseURL: URL.init(fileURLWithPath: self.showCodeFilePath!))
         }
@@ -329,24 +336,47 @@ extension ViewController: NSTableViewDelegate {
         
         keywordDesc = !keywordDesc
         
-        dataModels.removeAll()
+        self.dataModels.removeAll()
         for key in keys {
             let model = HZConfigModel.model(key, mapping[key] ?? "")
-            dataModels.append(model)
+            self.dataModels.append(model)
         }
-        
-        self.tableView.reloadData()
+        self.dataArray = self.dataModels
+        self.reloadData()
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let cellIdentifier = "Key"
-        let text = dataModels[row].key
+        let text = self.dataArray[row].key
         
         if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier.init(cellIdentifier), owner: self) as? NSTableCellView{
             cell.textField?.stringValue = text
             return cell
         }
         return nil
+    }
+}
+
+// MARK: - NSSearchFieldDelegate
+
+extension ViewController: NSTextFieldDelegate {
+    override func controlTextDidChange(_ obj: Notification) {
+        if let searchField = obj.object as? NSSearchField {
+            let keyword = searchField.stringValue
+            if (keyword.count == 0) {
+                initData(map: nil)
+                self.reloadData()
+                return
+            }
+            
+            self.dataArray.removeAll()
+            for model in self.dataModels {
+                if (model.key.contains(keyword)) {
+                    self.dataArray.append(model)
+                }
+            }
+            self.reloadData()
+        }
     }
 }
 
@@ -363,20 +393,20 @@ extension ViewController: WebUIDelegate {
 
 extension ViewController: HZConfigurationViewControllerProtocol {
     func modifyModel(model: HZConfigModel, isEdit: Bool) {
+        self.configViewController.dismiss(nil)
         if isEdit {
-            if tableView.selectedRow >= 0 {
-                if model.isEmpty() {
-                    dataModels.remove(at: tableView.selectedRow)
-                } else {
-                    dataModels[tableView.selectedRow] = model
-                }
+            self.dataArray[tableView.selectedRow] = model
+            self.dataModels.removeAll { (configModel) -> Bool in
+                return (configModel.key.elementsEqual(model.key))
             }
         } else {
-            dataModels.append(model)
+            if (model.key.contains(self.searchField.stringValue)) {
+                self.dataArray.append(model)
+            }
         }
+        self.dataModels.append(model)
         
-        self.tableView.reloadData()
+        self.reloadData()
         saveConfig()
-        self.configViewController.dismiss(nil)
     }
 }

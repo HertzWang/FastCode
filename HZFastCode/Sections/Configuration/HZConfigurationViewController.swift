@@ -43,6 +43,12 @@ class HZConfigurationViewController: NSViewController {
         // Do view setup here.
     }
     
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        
+        self.keywordTextField.isEnabled = !self.isEdit
+    }
+    
     override func awakeFromNib() {
         // 设置背景色及圆角
         self.bgView.wantsLayer = true

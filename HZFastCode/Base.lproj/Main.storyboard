@@ -457,6 +457,17 @@
                                     <action selector="editConfigAction:" target="XfG-lQ-9wD" id="4yV-2u-1lX"/>
                                 </connections>
                             </button>
+                            <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JfQ-YZ-4YT">
+                                <rect key="frame" x="20" y="551" width="200" height="25"/>
+                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="yjY-h1-tzz">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </searchFieldCell>
+                                <connections>
+                                    <outlet property="delegate" destination="XfG-lQ-9wD" id="aT5-g1-yBF"/>
+                                </connections>
+                            </searchField>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="g4z-u1-D4A" secondAttribute="trailing" constant="22" id="1SG-Dc-COm"/>
@@ -471,14 +482,18 @@
                             <constraint firstItem="ptd-Vm-gak" firstAttribute="height" secondItem="VmQ-j0-vfZ" secondAttribute="height" id="S10-88-ZGA"/>
                             <constraint firstItem="ptd-Vm-gak" firstAttribute="width" secondItem="VmQ-j0-vfZ" secondAttribute="width" id="SHv-XO-Rdu"/>
                             <constraint firstItem="g4z-u1-D4A" firstAttribute="leading" secondItem="lYM-S8-WXY" secondAttribute="trailing" constant="10" id="TPi-fp-bET"/>
+                            <constraint firstItem="lYM-S8-WXY" firstAttribute="top" secondItem="JfQ-YZ-4YT" secondAttribute="top" id="VI7-ic-xpN"/>
                             <constraint firstItem="nWk-Tg-e6F" firstAttribute="leading" secondItem="ptd-Vm-gak" secondAttribute="trailing" constant="-1" id="VZl-at-9hJ"/>
+                            <constraint firstItem="lYM-S8-WXY" firstAttribute="trailing" secondItem="JfQ-YZ-4YT" secondAttribute="trailing" id="XE4-5j-d0G"/>
                             <constraint firstItem="3ul-1d-OVl" firstAttribute="width" secondItem="VmQ-j0-vfZ" secondAttribute="width" id="ZLr-DS-BK9"/>
                             <constraint firstItem="3ul-1d-OVl" firstAttribute="leading" secondItem="VmQ-j0-vfZ" secondAttribute="trailing" constant="-1" id="Zwz-jI-eTd"/>
                             <constraint firstItem="lYM-S8-WXY" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="22" id="deW-n2-mxb"/>
+                            <constraint firstItem="lYM-S8-WXY" firstAttribute="leading" secondItem="JfQ-YZ-4YT" secondAttribute="leading" id="due-1i-34o"/>
                             <constraint firstItem="ptd-Vm-gak" firstAttribute="centerY" secondItem="VmQ-j0-vfZ" secondAttribute="centerY" id="ed8-6M-Zkp"/>
                             <constraint firstItem="quH-nI-w0c" firstAttribute="top" secondItem="g4z-u1-D4A" secondAttribute="bottom" constant="16" id="h3i-ro-qgD"/>
                             <constraint firstItem="nWk-Tg-e6F" firstAttribute="height" secondItem="3ul-1d-OVl" secondAttribute="height" id="k9F-Pr-3bt"/>
                             <constraint firstItem="VmQ-j0-vfZ" firstAttribute="top" secondItem="lYM-S8-WXY" secondAttribute="bottom" constant="-1" id="oqA-C4-BSE"/>
+                            <constraint firstItem="tNR-ri-5jd" firstAttribute="height" secondItem="JfQ-YZ-4YT" secondAttribute="height" id="rgz-5n-mAe"/>
                             <constraint firstItem="VmQ-j0-vfZ" firstAttribute="leading" secondItem="lYM-S8-WXY" secondAttribute="leading" id="soH-pF-A7g"/>
                             <constraint firstItem="3ul-1d-OVl" firstAttribute="centerY" secondItem="VmQ-j0-vfZ" secondAttribute="centerY" id="x0I-vk-Xcs"/>
                             <constraint firstItem="lYM-S8-WXY" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="yjY-Tg-ziq"/>
@@ -486,6 +501,7 @@
                     </view>
                     <connections>
                         <outlet property="codeWebView" destination="g4z-u1-D4A" id="Ufc-dg-d87"/>
+                        <outlet property="searchField" destination="JfQ-YZ-4YT" id="elL-Pv-EQd"/>
                         <outlet property="tableView" destination="fHe-N3-N3f" id="3mC-8C-FZU"/>
                     </connections>
                 </viewController>
