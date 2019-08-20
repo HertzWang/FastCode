@@ -14,10 +14,10 @@ class ViewController: NSViewController {
     // MARK: - Property
     
     @IBOutlet private weak var tableView: NSTableView!
-    @IBOutlet weak var codeWebView: WebView!
-    @IBOutlet weak var searchField: NSSearchField!
+    @IBOutlet fileprivate weak var codeWebView: WebView!
+    @IBOutlet fileprivate weak var sortArrowButon: NSButton!
+    fileprivate weak var searchField: NSSearchField?
     
-    fileprivate var keywordDesc: Bool = false
     fileprivate var dataModels: [HZConfigModel] = []
     fileprivate var dataArray: [HZConfigModel] = []
     fileprivate var helpRequest: URLRequest? {
@@ -72,14 +72,9 @@ class ViewController: NSViewController {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-    
-        guard self.codeWebView.mainFrameURL == nil else {
-            return
-        }
         
-        if let request = self.helpRequest {
-            self.codeWebView.mainFrame.load(request)
-        }
+        initSearchField()
+        initCodeWebView()
     }
     
     override var representedObject: Any? {
@@ -110,6 +105,33 @@ class ViewController: NSViewController {
         tableView.target = self
     }
     
+    /// 初始化搜索
+    private func initSearchField() {
+        guard self.searchField == nil else {
+            return;
+        }
+        if let items = NSApp.windows.first?.toolbar?.items {
+            for item in items {
+                if item.itemIdentifier.rawValue.elementsEqual("HZToolbarItemSearch"),
+                    let searchField = item.view as? NSSearchField {
+                    self.searchField = searchField
+                    self.searchField?.delegate = self
+                    break
+                }
+            }
+        }
+    }
+    
+    /// 初始化预览Web
+    private func initCodeWebView() {
+        guard self.codeWebView?.mainFrameURL == nil else {
+            return
+        }
+        if let request = self.helpRequest {
+            self.codeWebView?.mainFrame.load(request)
+        }
+    }
+    
     /// 保存数据
     private func saveConfig() {
         var dic: [String : String] = [:]
@@ -118,7 +140,6 @@ class ViewController: NSViewController {
                 dic[model.key] = model.value
             }
         }
-        
         HZUserConfig.shared.saveMapping(dic)
     }
     
@@ -271,30 +292,6 @@ class ViewController: NSViewController {
         self.helpWindow.show(self)
     }
     
-    /// 排序操作
-    ///
-    /// - Parameter sender: 按钮
-    @IBAction func sortAction(_ sender: NSButton) {
-        let mapping: [String : String] = HZUserConfig.shared.mapping
-        var keys: [String] = []
-        if keywordDesc {
-            keys = mapping.keys.sorted(by: >)
-        } else {
-            keys = mapping.keys.sorted(by: <)
-        }
-        
-        keywordDesc = !keywordDesc
-        
-        self.dataModels.removeAll()
-        for key in keys {
-            let model = HZConfigModel.model(key, mapping[key] ?? "")
-            self.dataModels.append(model)
-        }
-        self.dataArray = self.dataModels
-        self.reloadData()
-    }
-    
-    
     // MARK: - Notification
     
     /// 菜单操作通知
@@ -336,19 +333,40 @@ extension ViewController: NSTableViewDataSource {
 
 extension ViewController: NSTableViewDelegate {
     
+    // 显示详情
     func tableViewSelectionDidChange(_ notification: Notification) {
         let tableView = notification.object as! NSTableView
         if (tableView.selectedRow < 0) {
             self.codeWebView.mainFrame.load(self.helpRequest!)
             return
         }
-        
         let item = self.dataArray[self.tableView.selectedRow]
         if let html = self.htmlCode?.replacingOccurrences(of: kHZCodeShowPlaceholderText, with: item.value) {
             self.codeWebView.mainFrame.loadHTMLString(html, baseURL: URL.init(fileURLWithPath: self.showCodeFilePath!))
         }
     }
     
+    // 排序
+    func tableView(_ tableView: NSTableView, didClick tableColumn: NSTableColumn) {
+        let mapping: [String : String] = HZUserConfig.shared.mapping
+        var keys: [String] = []
+        if self.sortArrowButon.state == .off {
+            self.sortArrowButon.state = .on
+            keys = mapping.keys.sorted(by: >)
+        } else {
+            self.sortArrowButon.state = .off
+            keys = mapping.keys.sorted(by: <)
+        }
+        self.dataModels.removeAll()
+        for key in keys {
+            let model = HZConfigModel.model(key, mapping[key] ?? "")
+            self.dataModels.append(model)
+        }
+        self.dataArray = self.dataModels
+        self.reloadData()
+    }
+    
+    // Cell
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let cellIdentifier = "Key"
         let text = self.dataArray[row].key
@@ -363,7 +381,7 @@ extension ViewController: NSTableViewDelegate {
 
 // MARK: - NSSearchFieldDelegate
 
-extension ViewController: NSTextFieldDelegate {
+extension ViewController: NSSearchFieldDelegate {
     override func controlTextDidChange(_ obj: Notification) {
         if let searchField = obj.object as? NSSearchField {
             let keyword = searchField.stringValue
@@ -404,7 +422,7 @@ extension ViewController: HZConfigurationViewControllerProtocol {
                 return (configModel.key.elementsEqual(model.key))
             }
         } else {
-            if (model.key.contains(self.searchField.stringValue)) {
+            if (model.key.contains(self.searchField!.stringValue)) {
                 self.dataArray.append(model)
             }
         }

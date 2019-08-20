@@ -302,14 +302,51 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="FastCode 配置列表" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" titleVisibility="hidden" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <rect key="contentRect" x="561" y="369" width="668" height="598"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <value key="minSize" type="size" width="668" height="598"/>
-                        <connections>
-                            <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
-                        </connections>
+                        <toolbar key="toolbar" implicitIdentifier="F3AADB8A-1E8F-4154-8D2A-1AA973A82484" explicitIdentifier="HZToolbar" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="oO5-Ft-YXx">
+                            <allowedToolbarItems>
+                                <toolbarItem implicitItemIdentifier="618133A0-618E-423F-B55F-891BB2F539F3" explicitItemIdentifier="HZToolbarItemSearch" label="" paletteLabel="" id="xUV-eN-eTd">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="44" height="22"/>
+                                    <size key="maxSize" width="200" height="22"/>
+                                    <searchField key="view" identifier="HZToolbarItemSearchField" wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" id="GXw-SS-KqR">
+                                        <rect key="frame" x="0.0" y="14" width="200" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <searchFieldCell key="cell" selectable="YES" editable="YES" borderStyle="bezel" alignment="left" placeholderString="搜索" usesSingleLineMode="YES" bezelStyle="round" id="e7K-ON-am9">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </searchFieldCell>
+                                    </searchField>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="0AE15E81-AD9A-4CEC-BF0F-F44799F027AB" label="" paletteLabel="" sizingBehavior="auto" id="AGC-fF-QKK">
+                                    <nil key="toolTip"/>
+                                    <textField key="view" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="0YG-oq-0zQ">
+                                        <rect key="frame" x="0.0" y="14" width="123" height="17"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="FastCode 配置列表" id="BbG-wq-v8N">
+                                            <font key="font" usesAppearanceFont="YES"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="fYd-X1-wGP"/>
+                            </allowedToolbarItems>
+                            <defaultToolbarItems>
+                                <toolbarItem reference="fYd-X1-wGP"/>
+                                <toolbarItem reference="fYd-X1-wGP"/>
+                                <toolbarItem reference="fYd-X1-wGP"/>
+                                <toolbarItem reference="fYd-X1-wGP"/>
+                                <toolbarItem reference="AGC-fF-QKK"/>
+                                <toolbarItem reference="fYd-X1-wGP"/>
+                                <toolbarItem reference="xUV-eN-eTd"/>
+                            </defaultToolbarItems>
+                        </toolbar>
                     </window>
                     <connections>
                         <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
@@ -317,7 +354,7 @@
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="118" y="358"/>
+            <point key="canvasLocation" x="4" y="305"/>
         </scene>
         <!--主视图-->
         <scene sceneID="hIz-AP-VOD">
@@ -341,7 +378,7 @@
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn identifier="Key" width="195" minWidth="40" maxWidth="1000" id="gCa-lr-dml">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="关键字">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -385,7 +422,7 @@
                                     <constraint firstAttribute="width" constant="200" id="cLW-dI-6uZ"/>
                                 </constraints>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="dob-4E-7pM">
-                                    <rect key="frame" x="1" y="481" width="198" height="16"/>
+                                    <rect key="frame" x="1" y="459" width="198" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="afy-m5-XhV">
@@ -457,74 +494,56 @@
                                     <action selector="editConfigAction:" target="XfG-lQ-9wD" id="4yV-2u-1lX"/>
                                 </connections>
                             </button>
-                            <button toolTip="点击排序" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pyw-i9-XbA">
-                                <rect key="frame" x="195" y="550" width="25" height="27"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fnF-K9-Fvu">
+                                <rect key="frame" x="200" y="551" width="10" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="pyw-i9-XbA" secondAttribute="height" multiplier="1:1" id="j4a-1u-PLj"/>
+                                    <constraint firstAttribute="width" constant="10" id="9GQ-BO-80a"/>
                                 </constraints>
-                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSTouchBarGoUpTemplate" imagePosition="overlaps" alignment="center" alternateImage="NSTouchBarGoDownTemplate" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MrZ-OP-RaS">
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSTouchBarGoUpTemplate" imagePosition="overlaps" alignment="center" alternateImage="NSTouchBarGoDownTemplate" lineBreakMode="truncatingTail" enabled="NO" state="on" imageScaling="proportionallyDown" inset="2" id="t10-lW-VbS">
                                     <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
-                                <connections>
-                                    <action selector="sortAction:" target="XfG-lQ-9wD" id="uWb-ai-Be4"/>
-                                </connections>
                             </button>
-                            <searchField toolTip="请输入关键字" wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JfQ-YZ-4YT">
-                                <rect key="frame" x="20" y="551" width="175" height="25"/>
-                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="yjY-h1-tzz">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </searchFieldCell>
-                                <connections>
-                                    <outlet property="delegate" destination="XfG-lQ-9wD" id="aT5-g1-yBF"/>
-                                </connections>
-                            </searchField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="pyw-i9-XbA" firstAttribute="top" secondItem="lYM-S8-WXY" secondAttribute="top" id="0Hz-Pu-7Wf"/>
                             <constraint firstAttribute="trailing" secondItem="g4z-u1-D4A" secondAttribute="trailing" constant="22" id="1SG-Dc-COm"/>
-                            <constraint firstItem="g4z-u1-D4A" firstAttribute="top" secondItem="lYM-S8-WXY" secondAttribute="top" id="2XN-tc-GiC"/>
+                            <constraint firstItem="g4z-u1-D4A" firstAttribute="top" secondItem="lYM-S8-WXY" secondAttribute="top" id="3UJ-JN-hCr"/>
                             <constraint firstItem="3ul-1d-OVl" firstAttribute="height" secondItem="VmQ-j0-vfZ" secondAttribute="height" id="3tU-Wh-R5V"/>
                             <constraint firstAttribute="trailing" secondItem="quH-nI-w0c" secondAttribute="trailing" constant="22" id="6Gr-UH-Y1H"/>
                             <constraint firstItem="nWk-Tg-e6F" firstAttribute="trailing" secondItem="lYM-S8-WXY" secondAttribute="trailing" id="7cy-Aj-6L9"/>
+                            <constraint firstItem="lYM-S8-WXY" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="22" id="8zc-f7-aXf"/>
                             <constraint firstItem="quH-nI-w0c" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="9Kc-3F-HFE"/>
-                            <constraint firstItem="pyw-i9-XbA" firstAttribute="leading" secondItem="JfQ-YZ-4YT" secondAttribute="trailing" id="C1H-cE-fyZ"/>
                             <constraint firstItem="ptd-Vm-gak" firstAttribute="leading" secondItem="3ul-1d-OVl" secondAttribute="trailing" constant="-1" id="CM4-L6-Txn"/>
+                            <constraint firstItem="fnF-K9-Fvu" firstAttribute="height" secondItem="tNR-ri-5jd" secondAttribute="height" id="Dev-wL-ftW"/>
                             <constraint firstAttribute="bottom" secondItem="lYM-S8-WXY" secondAttribute="bottom" constant="78" id="Esw-Ab-pru"/>
+                            <constraint firstItem="fnF-K9-Fvu" firstAttribute="trailing" secondItem="lYM-S8-WXY" secondAttribute="trailing" constant="-10" id="F3A-u0-AQ1"/>
                             <constraint firstItem="nWk-Tg-e6F" firstAttribute="centerY" secondItem="3ul-1d-OVl" secondAttribute="centerY" id="JD0-Jk-6V9"/>
                             <constraint firstAttribute="bottom" secondItem="quH-nI-w0c" secondAttribute="bottom" constant="22" id="Qeg-5k-6zZ"/>
                             <constraint firstItem="ptd-Vm-gak" firstAttribute="height" secondItem="VmQ-j0-vfZ" secondAttribute="height" id="S10-88-ZGA"/>
                             <constraint firstItem="ptd-Vm-gak" firstAttribute="width" secondItem="VmQ-j0-vfZ" secondAttribute="width" id="SHv-XO-Rdu"/>
                             <constraint firstItem="g4z-u1-D4A" firstAttribute="leading" secondItem="lYM-S8-WXY" secondAttribute="trailing" constant="10" id="TPi-fp-bET"/>
-                            <constraint firstItem="lYM-S8-WXY" firstAttribute="top" secondItem="JfQ-YZ-4YT" secondAttribute="top" id="VI7-ic-xpN"/>
                             <constraint firstItem="nWk-Tg-e6F" firstAttribute="leading" secondItem="ptd-Vm-gak" secondAttribute="trailing" constant="-1" id="VZl-at-9hJ"/>
                             <constraint firstItem="3ul-1d-OVl" firstAttribute="width" secondItem="VmQ-j0-vfZ" secondAttribute="width" id="ZLr-DS-BK9"/>
                             <constraint firstItem="3ul-1d-OVl" firstAttribute="leading" secondItem="VmQ-j0-vfZ" secondAttribute="trailing" constant="-1" id="Zwz-jI-eTd"/>
-                            <constraint firstItem="pyw-i9-XbA" firstAttribute="trailing" secondItem="lYM-S8-WXY" secondAttribute="trailing" id="ab3-sy-NUv"/>
-                            <constraint firstItem="lYM-S8-WXY" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="22" id="deW-n2-mxb"/>
-                            <constraint firstItem="lYM-S8-WXY" firstAttribute="leading" secondItem="JfQ-YZ-4YT" secondAttribute="leading" id="due-1i-34o"/>
                             <constraint firstItem="ptd-Vm-gak" firstAttribute="centerY" secondItem="VmQ-j0-vfZ" secondAttribute="centerY" id="ed8-6M-Zkp"/>
-                            <constraint firstItem="pyw-i9-XbA" firstAttribute="height" secondItem="JfQ-YZ-4YT" secondAttribute="height" id="f1h-kf-0rB"/>
                             <constraint firstItem="quH-nI-w0c" firstAttribute="top" secondItem="g4z-u1-D4A" secondAttribute="bottom" constant="16" id="h3i-ro-qgD"/>
+                            <constraint firstItem="lYM-S8-WXY" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="ifx-hK-RC7"/>
                             <constraint firstItem="nWk-Tg-e6F" firstAttribute="height" secondItem="3ul-1d-OVl" secondAttribute="height" id="k9F-Pr-3bt"/>
                             <constraint firstItem="VmQ-j0-vfZ" firstAttribute="top" secondItem="lYM-S8-WXY" secondAttribute="bottom" constant="-1" id="oqA-C4-BSE"/>
-                            <constraint firstItem="tNR-ri-5jd" firstAttribute="height" secondItem="JfQ-YZ-4YT" secondAttribute="height" id="rgz-5n-mAe"/>
+                            <constraint firstItem="fnF-K9-Fvu" firstAttribute="top" secondItem="lYM-S8-WXY" secondAttribute="top" id="qbc-ww-G1u"/>
                             <constraint firstItem="VmQ-j0-vfZ" firstAttribute="leading" secondItem="lYM-S8-WXY" secondAttribute="leading" id="soH-pF-A7g"/>
                             <constraint firstItem="3ul-1d-OVl" firstAttribute="centerY" secondItem="VmQ-j0-vfZ" secondAttribute="centerY" id="x0I-vk-Xcs"/>
-                            <constraint firstItem="lYM-S8-WXY" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="yjY-Tg-ziq"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="codeWebView" destination="g4z-u1-D4A" id="Ufc-dg-d87"/>
-                        <outlet property="searchField" destination="JfQ-YZ-4YT" id="elL-Pv-EQd"/>
+                        <outlet property="sortArrowButon" destination="fnF-K9-Fvu" id="WNx-OX-76N"/>
                         <outlet property="tableView" destination="fHe-N3-N3f" id="3mC-8C-FZU"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="118" y="1324"/>
+            <point key="canvasLocation" x="4" y="1333"/>
         </scene>
     </scenes>
     <resources>
