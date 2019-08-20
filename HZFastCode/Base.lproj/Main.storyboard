@@ -341,7 +341,7 @@
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn identifier="Key" width="195" minWidth="40" maxWidth="1000" id="gCa-lr-dml">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="关键字（点击排序）">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -397,7 +397,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VmQ-j0-vfZ">
+                            <button toolTip="新增配置" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VmQ-j0-vfZ">
                                 <rect key="frame" x="20" y="58" width="25" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="8zp-RL-0MA"/>
@@ -411,7 +411,7 @@
                                     <action selector="addConfigAction:" target="XfG-lQ-9wD" id="Fpd-gG-OQY"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3ul-1d-OVl">
+                            <button toolTip="删除选中配置" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3ul-1d-OVl">
                                 <rect key="frame" x="44" y="58" width="25" height="22"/>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qem-SO-znv">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -447,7 +447,7 @@
                                     <outlet property="UIDelegate" destination="XfG-lQ-9wD" id="e6X-s0-306"/>
                                 </connections>
                             </webView>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ptd-Vm-gak">
+                            <button toolTip="编辑选中配置" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ptd-Vm-gak">
                                 <rect key="frame" x="68" y="58" width="25" height="22"/>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSActionTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kP4-jD-7nZ">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -457,8 +457,21 @@
                                     <action selector="editConfigAction:" target="XfG-lQ-9wD" id="4yV-2u-1lX"/>
                                 </connections>
                             </button>
-                            <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JfQ-YZ-4YT">
-                                <rect key="frame" x="20" y="551" width="200" height="25"/>
+                            <button toolTip="点击排序" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pyw-i9-XbA">
+                                <rect key="frame" x="195" y="550" width="25" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="pyw-i9-XbA" secondAttribute="height" multiplier="1:1" id="j4a-1u-PLj"/>
+                                </constraints>
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSTouchBarGoUpTemplate" imagePosition="overlaps" alignment="center" alternateImage="NSTouchBarGoDownTemplate" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MrZ-OP-RaS">
+                                    <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="sortAction:" target="XfG-lQ-9wD" id="uWb-ai-Be4"/>
+                                </connections>
+                            </button>
+                            <searchField toolTip="请输入关键字" wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JfQ-YZ-4YT">
+                                <rect key="frame" x="20" y="551" width="175" height="25"/>
                                 <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="yjY-h1-tzz">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -470,11 +483,14 @@
                             </searchField>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="pyw-i9-XbA" firstAttribute="top" secondItem="lYM-S8-WXY" secondAttribute="top" id="0Hz-Pu-7Wf"/>
                             <constraint firstAttribute="trailing" secondItem="g4z-u1-D4A" secondAttribute="trailing" constant="22" id="1SG-Dc-COm"/>
                             <constraint firstItem="g4z-u1-D4A" firstAttribute="top" secondItem="lYM-S8-WXY" secondAttribute="top" id="2XN-tc-GiC"/>
                             <constraint firstItem="3ul-1d-OVl" firstAttribute="height" secondItem="VmQ-j0-vfZ" secondAttribute="height" id="3tU-Wh-R5V"/>
                             <constraint firstAttribute="trailing" secondItem="quH-nI-w0c" secondAttribute="trailing" constant="22" id="6Gr-UH-Y1H"/>
                             <constraint firstItem="nWk-Tg-e6F" firstAttribute="trailing" secondItem="lYM-S8-WXY" secondAttribute="trailing" id="7cy-Aj-6L9"/>
+                            <constraint firstItem="quH-nI-w0c" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="9Kc-3F-HFE"/>
+                            <constraint firstItem="pyw-i9-XbA" firstAttribute="leading" secondItem="JfQ-YZ-4YT" secondAttribute="trailing" id="C1H-cE-fyZ"/>
                             <constraint firstItem="ptd-Vm-gak" firstAttribute="leading" secondItem="3ul-1d-OVl" secondAttribute="trailing" constant="-1" id="CM4-L6-Txn"/>
                             <constraint firstAttribute="bottom" secondItem="lYM-S8-WXY" secondAttribute="bottom" constant="78" id="Esw-Ab-pru"/>
                             <constraint firstItem="nWk-Tg-e6F" firstAttribute="centerY" secondItem="3ul-1d-OVl" secondAttribute="centerY" id="JD0-Jk-6V9"/>
@@ -484,12 +500,13 @@
                             <constraint firstItem="g4z-u1-D4A" firstAttribute="leading" secondItem="lYM-S8-WXY" secondAttribute="trailing" constant="10" id="TPi-fp-bET"/>
                             <constraint firstItem="lYM-S8-WXY" firstAttribute="top" secondItem="JfQ-YZ-4YT" secondAttribute="top" id="VI7-ic-xpN"/>
                             <constraint firstItem="nWk-Tg-e6F" firstAttribute="leading" secondItem="ptd-Vm-gak" secondAttribute="trailing" constant="-1" id="VZl-at-9hJ"/>
-                            <constraint firstItem="lYM-S8-WXY" firstAttribute="trailing" secondItem="JfQ-YZ-4YT" secondAttribute="trailing" id="XE4-5j-d0G"/>
                             <constraint firstItem="3ul-1d-OVl" firstAttribute="width" secondItem="VmQ-j0-vfZ" secondAttribute="width" id="ZLr-DS-BK9"/>
                             <constraint firstItem="3ul-1d-OVl" firstAttribute="leading" secondItem="VmQ-j0-vfZ" secondAttribute="trailing" constant="-1" id="Zwz-jI-eTd"/>
+                            <constraint firstItem="pyw-i9-XbA" firstAttribute="trailing" secondItem="lYM-S8-WXY" secondAttribute="trailing" id="ab3-sy-NUv"/>
                             <constraint firstItem="lYM-S8-WXY" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="22" id="deW-n2-mxb"/>
                             <constraint firstItem="lYM-S8-WXY" firstAttribute="leading" secondItem="JfQ-YZ-4YT" secondAttribute="leading" id="due-1i-34o"/>
                             <constraint firstItem="ptd-Vm-gak" firstAttribute="centerY" secondItem="VmQ-j0-vfZ" secondAttribute="centerY" id="ed8-6M-Zkp"/>
+                            <constraint firstItem="pyw-i9-XbA" firstAttribute="height" secondItem="JfQ-YZ-4YT" secondAttribute="height" id="f1h-kf-0rB"/>
                             <constraint firstItem="quH-nI-w0c" firstAttribute="top" secondItem="g4z-u1-D4A" secondAttribute="bottom" constant="16" id="h3i-ro-qgD"/>
                             <constraint firstItem="nWk-Tg-e6F" firstAttribute="height" secondItem="3ul-1d-OVl" secondAttribute="height" id="k9F-Pr-3bt"/>
                             <constraint firstItem="VmQ-j0-vfZ" firstAttribute="top" secondItem="lYM-S8-WXY" secondAttribute="bottom" constant="-1" id="oqA-C4-BSE"/>
@@ -514,5 +531,7 @@
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>
+        <image name="NSTouchBarGoDownTemplate" width="16" height="30"/>
+        <image name="NSTouchBarGoUpTemplate" width="16" height="30"/>
     </resources>
 </document>

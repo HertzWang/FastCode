@@ -271,6 +271,30 @@ class ViewController: NSViewController {
         self.helpWindow.show(self)
     }
     
+    /// 排序操作
+    ///
+    /// - Parameter sender: 按钮
+    @IBAction func sortAction(_ sender: NSButton) {
+        let mapping: [String : String] = HZUserConfig.shared.mapping
+        var keys: [String] = []
+        if keywordDesc {
+            keys = mapping.keys.sorted(by: >)
+        } else {
+            keys = mapping.keys.sorted(by: <)
+        }
+        
+        keywordDesc = !keywordDesc
+        
+        self.dataModels.removeAll()
+        for key in keys {
+            let model = HZConfigModel.model(key, mapping[key] ?? "")
+            self.dataModels.append(model)
+        }
+        self.dataArray = self.dataModels
+        self.reloadData()
+    }
+    
+    
     // MARK: - Notification
     
     /// 菜单操作通知
@@ -323,26 +347,6 @@ extension ViewController: NSTableViewDelegate {
         if let html = self.htmlCode?.replacingOccurrences(of: kHZCodeShowPlaceholderText, with: item.value) {
             self.codeWebView.mainFrame.loadHTMLString(html, baseURL: URL.init(fileURLWithPath: self.showCodeFilePath!))
         }
-    }
-    
-    func tableView(_ tableView: NSTableView, didClick tableColumn: NSTableColumn) {
-        let mapping: [String : String] = HZUserConfig.shared.mapping
-        var keys: [String] = []
-        if keywordDesc {
-            keys = mapping.keys.sorted(by: >)
-        } else {
-            keys = mapping.keys.sorted(by: <)
-        }
-        
-        keywordDesc = !keywordDesc
-        
-        self.dataModels.removeAll()
-        for key in keys {
-            let model = HZConfigModel.model(key, mapping[key] ?? "")
-            self.dataModels.append(model)
-        }
-        self.dataArray = self.dataModels
-        self.reloadData()
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
