@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="bgView" destination="xVo-w3-b6f" id="MkT-dW-iBq"/>
                 <outlet property="contentTextView" destination="owL-uz-1f2" id="RVZ-Je-1uR"/>
+                <outlet property="duplicateLabel" destination="Bnv-0k-AMG" id="rQW-fw-iCc"/>
                 <outlet property="keywordTextField" destination="8Gz-KA-Mob" id="VKe-Sf-pHm"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
@@ -66,6 +67,9 @@
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
+                    <connections>
+                        <outlet property="delegate" destination="-2" id="Oeo-Ix-AxA"/>
+                    </connections>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wQa-Yp-dsL">
                     <rect key="frame" x="20" y="479" width="164" height="17"/>
@@ -115,12 +119,22 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
+                <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Bnv-0k-AMG">
+                    <rect key="frame" x="550" y="479" width="50" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="*已存在" id="bfx-Tr-zNk">
+                        <font key="font" usesAppearanceFont="YES"/>
+                        <color key="textColor" red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
             <constraints>
+                <constraint firstItem="Bnv-0k-AMG" firstAttribute="centerY" secondItem="8Gz-KA-Mob" secondAttribute="centerY" id="0gZ-4m-R8m"/>
                 <constraint firstItem="MKB-ei-BjI" firstAttribute="centerY" secondItem="zGa-kD-AHT" secondAttribute="centerY" id="1EU-kG-IjI"/>
                 <constraint firstItem="wQa-Yp-dsL" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="22" id="7JD-uL-byd"/>
                 <constraint firstItem="Ks1-fu-hEz" firstAttribute="trailing" secondItem="8Gz-KA-Mob" secondAttribute="trailing" id="7mN-pp-j7K"/>
                 <constraint firstItem="Vt4-mO-MWJ" firstAttribute="trailing" secondItem="wQa-Yp-dsL" secondAttribute="trailing" id="7zP-y5-jDS"/>
+                <constraint firstItem="Bnv-0k-AMG" firstAttribute="leading" secondItem="8Gz-KA-Mob" secondAttribute="trailing" constant="5" id="CVj-K8-BeH"/>
                 <constraint firstItem="Vt4-mO-MWJ" firstAttribute="top" secondItem="wQa-Yp-dsL" secondAttribute="bottom" constant="12" id="EFa-2e-VCj"/>
                 <constraint firstItem="MKB-ei-BjI" firstAttribute="leading" secondItem="zGa-kD-AHT" secondAttribute="trailing" constant="15" id="Jo4-q9-VZ3"/>
                 <constraint firstItem="wQa-Yp-dsL" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="82" id="Oew-7m-Gac"/>
@@ -134,6 +148,7 @@
                 <constraint firstItem="8Gz-KA-Mob" firstAttribute="centerY" secondItem="wQa-Yp-dsL" secondAttribute="centerY" id="jg6-hx-A5G"/>
                 <constraint firstAttribute="trailing" secondItem="xVo-w3-b6f" secondAttribute="trailing" constant="22" id="sqP-sT-4Zr"/>
                 <constraint firstItem="MKB-ei-BjI" firstAttribute="top" secondItem="xVo-w3-b6f" secondAttribute="bottom" constant="10" id="tT8-iB-I1T"/>
+                <constraint firstItem="8Gz-KA-Mob" firstAttribute="leading" secondItem="wQa-Yp-dsL" secondAttribute="trailing" constant="5" id="uJ7-0h-3MF"/>
                 <constraint firstItem="Vt4-mO-MWJ" firstAttribute="leading" secondItem="wQa-Yp-dsL" secondAttribute="leading" id="ueM-iw-3Nw"/>
                 <constraint firstItem="MKB-ei-BjI" firstAttribute="width" secondItem="zGa-kD-AHT" secondAttribute="width" id="x4u-3G-JYD"/>
                 <constraint firstItem="xVo-w3-b6f" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="22" id="yv9-Oa-tja"/>

@@ -28,6 +28,8 @@ class HZConfigurationViewController: NSViewController {
     @IBOutlet fileprivate weak var keywordTextField: NSTextField!
     /// 内容
     @IBOutlet fileprivate var contentTextView: NSTextView!
+    /// 重复提示，默认隐藏
+    @IBOutlet fileprivate weak var duplicateLabel: NSTextField!
     
     /// 更新操作Protocol
     weak var delegate: HZConfigurationViewControllerProtocol?
@@ -37,6 +39,11 @@ class HZConfigurationViewController: NSViewController {
     fileprivate var isEdit: Bool = false
     
     // MARK: - Override
+    
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        self.duplicateLabel?.isHidden = true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,5 +101,28 @@ class HZConfigurationViewController: NSViewController {
         if delegate == nil {
             self.dismiss(nil)
         }
+    }
+}
+
+extension HZConfigurationViewController : NSTextFieldDelegate {
+    
+    func control(_ control: NSControl, textShouldBeginEditing fieldEditor: NSText) -> Bool {
+        self.duplicateLabel.isHidden = true
+        return true
+    }
+    
+    func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
+        let key = self.keywordTextField.stringValue
+        guard key.count > 0 else {
+            return true
+        }
+        let mapping = HZUserConfig.shared.mapping
+        for (oldKey, _) in mapping {
+            if key.elementsEqual(oldKey) {
+                self.duplicateLabel.isHidden = false
+                break;
+            }
+        }
+        return true
     }
 }
