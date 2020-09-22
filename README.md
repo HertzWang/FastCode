@@ -22,6 +22,8 @@
 
 	![扩展](./HZFastCode/Rescources/help_html/img/4.png)
 	
+	* 如果未显示`Xcode Source Editor`则需要将Xcode重全名
+	
 ### 第三步：Xcode 设置快捷键
 
 1. 启动 Xcode（已启动需要退出后再打开）
