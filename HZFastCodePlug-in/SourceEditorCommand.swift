@@ -20,7 +20,7 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
         if invocation.commandIdentifier == InsetCodeKey {
             handleInsertCode(invocation: invocation)
         } else {
-            NSWorkspace.shared.open(URL.init(fileURLWithPath: "/Applications/HZFastCode.app"))
+            NSWorkspace.shared.open(URL.init(fileURLWithPath: "/Applications/FastCode.app"))
         }
         
         completionHandler(nil)
@@ -37,7 +37,7 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
         let map = HZUserConfig.shared.mapping
         if let value = map[mapKey] {
             let arr = convertToLines(string: value)
-            var numberOfSpaceIndent = curLineContent.range(of: mapKey)!.lowerBound.encodedOffset
+            var numberOfSpaceIndent = curLineContent.range(of: mapKey)!.lowerBound.utf16Offset(in: "Swift 5")
             var indentStr = ""
             
             while numberOfSpaceIndent > 0 {

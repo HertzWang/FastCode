@@ -156,7 +156,7 @@ class ViewController: NSViewController {
     /// - Parameter sender: 添加按钮
     @IBAction fileprivate func addConfigAction(_ sender: NSButton) {
         self.configViewController.model(HZConfigModel())
-        self.presentViewControllerAsSheet(self.configViewController)
+        self.presentAsSheet(self.configViewController)
     }
     
     /// 删除配置信息
@@ -197,7 +197,7 @@ class ViewController: NSViewController {
         
         let item = self.dataArray[self.tableView.selectedRow]
         self.configViewController.model(item)
-        self.presentViewControllerAsSheet(self.configViewController)
+        self.presentAsSheet(self.configViewController)
     }
     
     /// 导入配置
@@ -382,7 +382,7 @@ extension ViewController: NSTableViewDelegate {
 // MARK: - NSSearchFieldDelegate
 
 extension ViewController: NSSearchFieldDelegate {
-    override func controlTextDidChange(_ obj: Notification) {
+    func controlTextDidChange(_ obj: Notification) {
         if let searchField = obj.object as? NSSearchField {
             let keyword = searchField.stringValue
             if (keyword.count == 0) {
