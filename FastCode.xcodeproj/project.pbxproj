@@ -21,24 +21,9 @@
 		DB0D99A8224B5C0700F088A6 /* HZConfigModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0D99A7224B5C0700F088A6 /* HZConfigModel.swift */; };
 		DB4FA10523018C2D00583898 /* HZEnumNotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4FA10423018C2D00583898 /* HZEnumNotificationModel.swift */; };
 		DB4FA10A2301A20E00583898 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4FA1092301A20E00583898 /* WebKit.framework */; };
-		DB51146B2248E6C200518FB0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BB3A7822018571D005C0A7F /* Cocoa.framework */; };
-		DB51146E2248E6C200518FB0 /* SourceEditorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51146D2248E6C200518FB0 /* SourceEditorExtension.swift */; };
-		DB5114702248E6C200518FB0 /* SourceEditorCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51146F2248E6C200518FB0 /* SourceEditorCommand.swift */; };
-		DB5114752248E6C200518FB0 /* FastCodePlug-in.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DB51146A2248E6C200518FB0 /* FastCodePlug-in.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		DB5114792248E8BC00518FB0 /* HZUserConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB3A79C2018844B005C0A7F /* HZUserConfig.swift */; };
 		DB9C68CF224B73FB00FE8771 /* HZHelpWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9C68CD224B73FB00FE8771 /* HZHelpWindowController.swift */; };
 		DB9C68D0224B73FB00FE8771 /* HZHelpWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB9C68CE224B73FB00FE8771 /* HZHelpWindowController.xib */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		DB5114732248E6C200518FB0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0BB3A761201856AD005C0A7F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DB5114692248E6C200518FB0;
-			remoteInfo = "HZFastCodePlug-in";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		0BB3A7912018571D005C0A7F /* Embed App Extensions */ = {
@@ -47,7 +32,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				DB5114752248E6C200518FB0 /* FastCodePlug-in.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -73,11 +57,6 @@
 		DB0D99A7224B5C0700F088A6 /* HZConfigModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HZConfigModel.swift; sourceTree = "<group>"; };
 		DB4FA10423018C2D00583898 /* HZEnumNotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HZEnumNotificationModel.swift; sourceTree = "<group>"; };
 		DB4FA1092301A20E00583898 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		DB51146A2248E6C200518FB0 /* FastCodePlug-in.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "FastCodePlug-in.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DB51146D2248E6C200518FB0 /* SourceEditorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceEditorExtension.swift; sourceTree = "<group>"; };
-		DB51146F2248E6C200518FB0 /* SourceEditorCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceEditorCommand.swift; sourceTree = "<group>"; };
-		DB5114712248E6C200518FB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DB5114722248E6C200518FB0 /* HZFastCodePlug_in.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HZFastCodePlug_in.entitlements; sourceTree = "<group>"; };
 		DB9C68CD224B73FB00FE8771 /* HZHelpWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HZHelpWindowController.swift; sourceTree = "<group>"; };
 		DB9C68CE224B73FB00FE8771 /* HZHelpWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HZHelpWindowController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,14 +70,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DB5114672248E6C200518FB0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DB51146B2248E6C200518FB0 /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -107,7 +78,6 @@
 			children = (
 				1B063CF62519D9ED005307C3 /* README.md */,
 				0BB3A76B201856AD005C0A7F /* HZFastCode */,
-				DB51146C2248E6C200518FB0 /* HZFastCodePlug-in */,
 				0BB3A7812018571D005C0A7F /* Frameworks */,
 				0BB3A76A201856AD005C0A7F /* Products */,
 			);
@@ -117,7 +87,6 @@
 			isa = PBXGroup;
 			children = (
 				0BB3A769201856AD005C0A7F /* FastCode.app */,
-				DB51146A2248E6C200518FB0 /* FastCodePlug-in.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -189,17 +158,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		DB51146C2248E6C200518FB0 /* HZFastCodePlug-in */ = {
-			isa = PBXGroup;
-			children = (
-				DB51146D2248E6C200518FB0 /* SourceEditorExtension.swift */,
-				DB51146F2248E6C200518FB0 /* SourceEditorCommand.swift */,
-				DB5114712248E6C200518FB0 /* Info.plist */,
-				DB5114722248E6C200518FB0 /* HZFastCodePlug_in.entitlements */,
-			);
-			path = "HZFastCodePlug-in";
-			sourceTree = "<group>";
-		};
 		DB9C68CA224B737600FE8771 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
@@ -260,29 +218,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				DB5114742248E6C200518FB0 /* PBXTargetDependency */,
 			);
 			name = FastCode;
 			productName = GenerateCode;
 			productReference = 0BB3A769201856AD005C0A7F /* FastCode.app */;
 			productType = "com.apple.product-type.application";
-		};
-		DB5114692248E6C200518FB0 /* FastCodePlug-in */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DB5114762248E6C200518FB0 /* Build configuration list for PBXNativeTarget "FastCodePlug-in" */;
-			buildPhases = (
-				DB5114662248E6C200518FB0 /* Sources */,
-				DB5114672248E6C200518FB0 /* Frameworks */,
-				DB5114682248E6C200518FB0 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "FastCodePlug-in";
-			productName = "HZFastCodePlug-in";
-			productReference = DB51146A2248E6C200518FB0 /* FastCodePlug-in.appex */;
-			productType = "com.apple.product-type.xcode-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -303,10 +243,6 @@
 							};
 						};
 					};
-					DB5114692248E6C200518FB0 = {
-						CreatedOnToolsVersion = 10.1;
-						ProvisioningStyle = Automatic;
-					};
 				};
 			};
 			buildConfigurationList = 0BB3A764201856AD005C0A7F /* Build configuration list for PBXProject "FastCode" */;
@@ -323,7 +259,6 @@
 			projectRoot = "";
 			targets = (
 				0BB3A768201856AD005C0A7F /* FastCode */,
-				DB5114692248E6C200518FB0 /* FastCodePlug-in */,
 			);
 		};
 /* End PBXProject section */
@@ -340,13 +275,6 @@
 				DB9C68D0224B73FB00FE8771 /* HZHelpWindowController.xib in Resources */,
 				1BA970A523040CFA0085B3A1 /* help_html in Resources */,
 				0BB3A774201856AD005C0A7F /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DB5114682248E6C200518FB0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,25 +296,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DB5114662248E6C200518FB0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DB5114792248E8BC00518FB0 /* HZUserConfig.swift in Sources */,
-				DB51146E2248E6C200518FB0 /* SourceEditorExtension.swift in Sources */,
-				DB5114702248E6C200518FB0 /* SourceEditorCommand.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		DB5114742248E6C200518FB0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DB5114692248E6C200518FB0 /* FastCodePlug-in */;
-			targetProxy = DB5114732248E6C200518FB0 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		0BB3A772201856AD005C0A7F /* Main.storyboard */ = {
@@ -546,51 +456,6 @@
 			};
 			name = Release;
 		};
-		DB5114772248E6C200518FB0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CODE_SIGN_ENTITLEMENTS = "HZFastCodePlug-in/HZFastCodePlug_in.entitlements";
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 64Z9QAXW9D;
-				INFOPLIST_FILE = "HZFastCodePlug-in/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hertzwang.fastcode.HZFastCodePlug-in";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		DB5114782248E6C200518FB0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CODE_SIGN_ENTITLEMENTS = "HZFastCodePlug-in/HZFastCodePlug_in.entitlements";
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 64Z9QAXW9D;
-				INFOPLIST_FILE = "HZFastCodePlug-in/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hertzwang.fastcode.HZFastCodePlug-in";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -608,15 +473,6 @@
 			buildConfigurations = (
 				0BB3A77A201856AD005C0A7F /* Debug */,
 				0BB3A77B201856AD005C0A7F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DB5114762248E6C200518FB0 /* Build configuration list for PBXNativeTarget "FastCodePlug-in" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DB5114772248E6C200518FB0 /* Debug */,
-				DB5114782248E6C200518FB0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
