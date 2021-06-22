@@ -103,6 +103,7 @@ class ViewController: NSViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.target = self
+        tableView.doubleAction = NSSelectorFromString("editConfigAction:")
     }
     
     /// 初始化搜索
@@ -189,8 +190,8 @@ class ViewController: NSViewController {
     
     /// 编辑配置信息
     ///
-    /// - Parameter sender: 编辑按钮
-    @IBAction func editConfigAction(_ sender: NSButton) {
+    /// - Parameter sender: 编辑按钮/双击的TableView
+    @IBAction func editConfigAction(_ sender: Any) {
         guard self.tableView.selectedRow >= 0 else {
             return
         }
