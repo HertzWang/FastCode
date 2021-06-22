@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
-        <plugIn identifier="com.apple.WebKitIBPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="18122"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -326,7 +326,7 @@
                                 <toolbarItem implicitItemIdentifier="0AE15E81-AD9A-4CEC-BF0F-F44799F027AB" label="" paletteLabel="" sizingBehavior="auto" id="AGC-fF-QKK">
                                     <nil key="toolTip"/>
                                     <textField key="view" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="0YG-oq-0zQ">
-                                        <rect key="frame" x="0.0" y="14" width="123" height="17"/>
+                                        <rect key="frame" x="0.0" y="14" width="119" height="16"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="FastCode 配置列表" id="BbG-wq-v8N">
                                             <font key="font" usesAppearanceFont="YES"/>
@@ -336,6 +336,20 @@
                                     </textField>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="fYd-X1-wGP"/>
+                                <toolbarItem implicitItemIdentifier="A6F61DB3-597E-4977-866B-899E81B77C86" explicitItemIdentifier="HZToolbarItemPublish" label="Custom View" paletteLabel="Custom View" title="发布" id="y0p-0I-RXF">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="60" height="20"/>
+                                    <size key="maxSize" width="63" height="44"/>
+                                    <button key="view" identifier="HZToolbarItemPublishButton" verticalHuggingPriority="750" id="MLi-JG-u0v">
+                                        <rect key="frame" x="7" y="14" width="63" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundRect" title="发布" bezelStyle="roundedRect" alignment="center" controlSize="large" borderStyle="border" inset="2" id="K5v-on-meB">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system" size="11"/>
+                                        </buttonCell>
+                                        <color key="contentTintColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    </button>
+                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="fYd-X1-wGP"/>
@@ -345,6 +359,7 @@
                                 <toolbarItem reference="AGC-fF-QKK"/>
                                 <toolbarItem reference="fYd-X1-wGP"/>
                                 <toolbarItem reference="xUV-eN-eTd"/>
+                                <toolbarItem reference="y0p-0I-RXF"/>
                             </defaultToolbarItems>
                         </toolbar>
                     </window>
@@ -360,26 +375,25 @@
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController title="编辑" id="XfG-lQ-9wD" userLabel="主视图" customClass="ViewController" customModule="FastCode" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="668" height="598"/>
+                    <view key="view" wantsLayer="YES" misplaced="YES" id="m2S-Jp-Qdl">
+                        <rect key="frame" x="0.0" y="0.0" width="668" height="573"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lYM-S8-WXY">
-                                <rect key="frame" x="20" y="78" width="200" height="498"/>
+                                <rect key="frame" x="20" y="78" width="200" height="161"/>
                                 <clipView key="contentView" id="qIc-jP-hB4">
-                                    <rect key="frame" x="1" y="0.0" width="198" height="497"/>
+                                    <rect key="frame" x="1" y="1" width="198" height="159"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="tNR-ri-5jd" viewBased="YES" id="fHe-N3-N3f">
-                                            <rect key="frame" x="0.0" y="0.0" width="198" height="472"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="198" height="134"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="Key" width="195" minWidth="40" maxWidth="1000" id="gCa-lr-dml">
+                                                <tableColumn identifier="Key" width="186" minWidth="40" maxWidth="1000" id="gCa-lr-dml">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="关键字">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -395,7 +409,7 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="niK-xl-otd">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="195" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="1" width="195" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="2JI-Ve-2Ur">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -429,7 +443,7 @@
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <tableHeaderView key="headerView" id="tNR-ri-5jd">
+                                <tableHeaderView key="headerView" wantsLayer="YES" id="tNR-ri-5jd">
                                     <rect key="frame" x="0.0" y="0.0" width="198" height="25"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
@@ -476,7 +490,7 @@
                                 </connections>
                             </button>
                             <webView maintainsBackForwardList="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g4z-u1-D4A">
-                                <rect key="frame" x="230" y="59" width="416" height="517"/>
+                                <rect key="frame" x="230" y="58" width="416" height="181"/>
                                 <webPreferences key="preferences" defaultFontSize="16" defaultFixedFontSize="13" minimumFontSize="0" plugInsEnabled="NO" javaEnabled="NO" javaScriptCanOpenWindowsAutomatically="NO" loadsImagesAutomatically="NO" allowsAnimatedImages="NO" allowsAnimatedImageLooping="NO">
                                     <nil key="identifier"/>
                                 </webPreferences>
@@ -495,7 +509,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fnF-K9-Fvu">
-                                <rect key="frame" x="200" y="551" width="10" height="25"/>
+                                <rect key="frame" x="200" y="211" width="10.5" height="28.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="10" id="9GQ-BO-80a"/>
                                 </constraints>
@@ -547,10 +561,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="NSActionTemplate" width="14" height="14"/>
-        <image name="NSAddTemplate" width="11" height="11"/>
-        <image name="NSRemoveTemplate" width="11" height="11"/>
-        <image name="NSTouchBarGoDownTemplate" width="16" height="30"/>
-        <image name="NSTouchBarGoUpTemplate" width="16" height="30"/>
+        <image name="NSActionTemplate" width="15" height="15"/>
+        <image name="NSAddTemplate" width="14" height="13"/>
+        <image name="NSRemoveTemplate" width="14" height="4"/>
+        <image name="NSTouchBarGoDownTemplate" width="15" height="9"/>
+        <image name="NSTouchBarGoUpTemplate" width="15" height="9"/>
     </resources>
 </document>

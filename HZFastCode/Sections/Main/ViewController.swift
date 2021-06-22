@@ -17,6 +17,7 @@ class ViewController: NSViewController {
     @IBOutlet fileprivate weak var codeWebView: WebView!
     @IBOutlet fileprivate weak var sortArrowButon: NSButton!
     fileprivate weak var searchField: NSSearchField?
+    fileprivate weak var publishButton: NSButton?
     
     fileprivate var dataModels: [HZConfigModel] = []
     fileprivate var dataArray: [HZConfigModel] = []
@@ -115,9 +116,15 @@ class ViewController: NSViewController {
             for item in items {
                 if item.itemIdentifier.rawValue.elementsEqual("HZToolbarItemSearch"),
                     let searchField = item.view as? NSSearchField {
+                    // 搜索
                     self.searchField = searchField
                     self.searchField?.delegate = self
-                    break
+                } else if item.itemIdentifier.rawValue.elementsEqual("HZToolbarItemPublish"),
+                    let publishButton = item.view as? NSButton {
+                    // 发布
+                    self.publishButton = publishButton
+                    self.publishButton?.target = self
+                    self.publishButton?.action = #selector(publishAction)
                 }
             }
         }
@@ -291,6 +298,21 @@ class ViewController: NSViewController {
     /// - Parameter sender: 按钮
     @IBAction fileprivate func helpAction(_ sender: Any) {
         self.helpWindow.show(self)
+    }
+    
+    /// 发布
+    @objc fileprivate func publishAction() {
+        let alert = NSAlert()
+        alert.addButton(withTitle: "确定")
+        alert.addButton(withTitle: "取消") // 默认为取消操作
+        alert.messageText = "提示"
+        alert.informativeText = "确认使用当前所有配置？"
+        alert.alertStyle = .warning
+        alert.beginSheetModal(for: self.view.window!) { (returnCode) in
+            if returnCode.rawValue == NSApplication.ModalResponse.alertFirstButtonReturn.rawValue {
+                
+            }
+        }
     }
     
     // MARK: - Notification
