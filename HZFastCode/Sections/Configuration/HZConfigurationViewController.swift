@@ -63,8 +63,8 @@ class HZConfigurationViewController: NSViewController {
         self.bgView.layer?.cornerRadius = 4
         self.bgView.needsDisplay = true
         
-        self.keywordTextField?.stringValue = self.model.key
-        self.contentTextView?.string = self.model.value
+        self.keywordTextField?.stringValue = self.model.prefix
+        self.contentTextView?.string = self.model.contents
     }
     
     // MARK: - Public
@@ -72,11 +72,11 @@ class HZConfigurationViewController: NSViewController {
     /// 设置显示的Model
     ///
     /// - Parameter model: 数据，添加时传 HZConfigModel()
-    func model(_ model: HZConfigModel) {
-        self.model = model
-        self.isEdit = (model.key.trimmingCharacters(in: .whitespacesAndNewlines).count > 0)
-        self.keywordTextField?.stringValue = self.model.key
-        self.contentTextView?.string = self.model.value
+    func model(_ model: HZConfigModel?) {
+        self.model = model ?? HZConfigModel.model("", "")
+        self.isEdit = (self.model.prefix.trimmingCharacters(in: .whitespacesAndNewlines).count > 0)
+        self.keywordTextField?.stringValue = self.model.prefix
+        self.contentTextView?.string = self.model.contents
     }
     
     // MARK: - Action
@@ -93,8 +93,8 @@ class HZConfigurationViewController: NSViewController {
             return;
         }
         
-        self.model.key = self.keywordTextField.stringValue
-        self.model.value = self.contentTextView.string
+        self.model.prefix = self.keywordTextField.stringValue
+        self.model.contents = self.contentTextView.string
         
         delegate?.modifyModel(model: self.model, isEdit: self.isEdit)
         

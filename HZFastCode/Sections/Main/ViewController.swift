@@ -87,16 +87,17 @@ class ViewController: NSViewController {
     // MARK: - Private
     
     /// 初始化数据
-    private func initData(map: [String : String]? = nil) {
+    private func initData(map: [String : HZConfigModel]? = nil) {
         let mapping = map ?? HZUserConfig.shared.mapping
         var arr: [HZConfigModel] = []
         for (key, value) in mapping {
-            let model = HZConfigModel.model(key, value)
+            let model = HZConfigModel.model(key, value.contents)
             arr.append(model)
         }
         
         self.dataModels = arr
         self.dataArray = self.dataModels
+        HZUserConfig.shared.cleanOldData()
     }
     
     /// 初始化界面
@@ -142,10 +143,10 @@ class ViewController: NSViewController {
     
     /// 保存数据
     private func saveConfig() {
-        var dic: [String : String] = [:]
+        var dic = [String : HZConfigModel]()
         for model in self.dataModels {
-            if !model.key.isEmpty,  !model.value.isEmpty {
-                dic[model.key] = model.value
+            if !model.prefix.isEmpty,  !model.contents.isEmpty {
+                dic[model.prefix] = model
             }
         }
         HZUserConfig.shared.saveMapping(dic)
@@ -163,7 +164,7 @@ class ViewController: NSViewController {
     ///
     /// - Parameter sender: 添加按钮
     @IBAction fileprivate func addConfigAction(_ sender: NSButton) {
-        self.configViewController.model(HZConfigModel())
+        self.configViewController.model(nil)
         self.presentAsSheet(self.configViewController)
     }
     
@@ -184,9 +185,9 @@ class ViewController: NSViewController {
         alert.beginSheetModal(for: self.view.window!) { (returnCode) in
             if returnCode.rawValue == NSApplication.ModalResponse.alertFirstButtonReturn.rawValue {
                 let selectedRow = self.tableView.selectedRow
-                let removeKey = self.dataArray[selectedRow].key
+                let removeKey = self.dataArray[selectedRow].prefix
                 self.dataModels.removeAll(where: { (configModel) -> Bool in
-                    return (configModel.key.elementsEqual(removeKey))
+                    return (configModel.prefix.elementsEqual(removeKey))
                 })
                 self.saveConfig()
                 self.dataArray.remove(at: selectedRow)
@@ -259,9 +260,9 @@ class ViewController: NSViewController {
             if result.rawValue == NSFileHandlingPanelOKButton {
                 if let path = savePanel.url {
                     
-                    let objc = HZUserConfig.shared.mapping
+                    let mapping = HZUserConfig.shared.stringMapping(nil)
                     do {
-                        let data = try JSONSerialization.data(withJSONObject: objc, options: .prettyPrinted)
+                        let data = try JSONSerialization.data(withJSONObject: mapping, options: .prettyPrinted)
                         let string = String.init(data: data, encoding: .utf8)
                         try? string?.write(to: path, atomically: true, encoding: .utf8)
                     } catch {
@@ -364,14 +365,18 @@ extension ViewController: NSTableViewDelegate {
             return
         }
         let item = self.dataArray[self.tableView.selectedRow]
-        if let html = self.htmlCode?.replacingOccurrences(of: kHZCodeShowPlaceholderText, with: item.value) {
+        if let html = self.htmlCode?.replacingOccurrences(of: kHZCodeShowPlaceholderText, with: item.contents) {
             self.codeWebView.mainFrame.loadHTMLString(html, baseURL: URL.init(fileURLWithPath: self.showCodeFilePath!))
         }
     }
     
+    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+        return 20
+    }
+    
     // 排序
     func tableView(_ tableView: NSTableView, didClick tableColumn: NSTableColumn) {
-        let mapping: [String : String] = HZUserConfig.shared.mapping
+        let mapping: [String : HZConfigModel] = HZUserConfig.shared.mapping
         var keys: [String] = []
         if self.sortArrowButon.state == .off {
             self.sortArrowButon.state = .on
@@ -382,7 +387,7 @@ extension ViewController: NSTableViewDelegate {
         }
         self.dataModels.removeAll()
         for key in keys {
-            let model = HZConfigModel.model(key, mapping[key] ?? "")
+            let model = mapping[key] ?? HZConfigModel()
             self.dataModels.append(model)
         }
         self.dataArray = self.dataModels
@@ -392,9 +397,9 @@ extension ViewController: NSTableViewDelegate {
     // Cell
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let cellIdentifier = "Key"
-        let text = self.dataArray[row].key
+        let text = self.dataArray[row].prefix
         
-        if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier.init(cellIdentifier), owner: self) as? NSTableCellView{
+        if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier.init(cellIdentifier), owner: self) as? NSTableCellView {
             cell.textField?.stringValue = text
             return cell
         }
@@ -416,7 +421,7 @@ extension ViewController: NSSearchFieldDelegate {
             
             self.dataArray.removeAll()
             for model in self.dataModels {
-                if (model.key.contains(keyword)) {
+                if (model.prefix.contains(keyword)) {
                     self.dataArray.append(model)
                 }
             }
@@ -442,10 +447,12 @@ extension ViewController: HZConfigurationViewControllerProtocol {
         if isEdit {
             self.dataArray[tableView.selectedRow] = model
             self.dataModels.removeAll { (configModel) -> Bool in
-                return (configModel.key.elementsEqual(model.key))
+                return (configModel.prefix.elementsEqual(model.prefix))
             }
         } else {
-            if (model.key.contains(self.searchField!.stringValue)) {
+            if self.searchField!.stringValue.isEmpty {
+                self.dataArray.append(model)
+            } else if model.prefix.contains(self.searchField!.stringValue) {
                 self.dataArray.append(model)
             }
         }
