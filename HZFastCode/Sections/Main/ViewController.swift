@@ -306,9 +306,8 @@ class ViewController: NSViewController {
         let alert = NSAlert()
         alert.addButton(withTitle: "确定")
         alert.addButton(withTitle: "取消") // 默认为取消操作
-        alert.messageText = "提示"
-        alert.informativeText = "应用所有配置？"
-        alert.alertStyle = .critical
+        alert.messageText = "请运行脚本移动文件，重启Xcode生效"
+        alert.alertStyle = .informational
         alert.beginSheetModal(for: self.view.window!) { (returnCode) in
             if returnCode.rawValue == NSApplication.ModalResponse.alertFirstButtonReturn.rawValue {
                 HZUserConfig.shared.outputXMLFile()

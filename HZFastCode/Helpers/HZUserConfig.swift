@@ -84,30 +84,56 @@ class HZUserConfig: NSObject {
                 }
                 let loc = documentDirectory.range(of: kFCPathKeyword).location
                 let xcodeSnippetsPath = "\(documentDirectory.substring(to: loc))Library/Developer/Xcode/UserData/CodeSnippets"
-                var moveMap = [String: String]()
+                var files = [String]()
                 let mapping = HZUserConfig.shared.mapping
                 for (key, model) in mapping {
-                    let filePath = "\(cachedPath)/fast_code_custom_" + key + ".codesnippet"
-                    let outPath = "\(xcodeSnippetsPath)/fast_code_custom_" + key + ".codesnippet"
+                    let fileName =  "fast_code_custom_\(key).codesnippet"
+                    let filePath = "\(cachedPath)/" + fileName
                     if let fileURL = URL.init(string: filePath) {
                         try? fm.removeItem(at: fileURL)
                         try model.data()?.write(to: fileURL)
-                        moveMap[filePath.replacingOccurrences(of: kFCFilePathPrefix, with: "")] = outPath.replacingOccurrences(of: kFCFilePathPrefix, with: "")
+                        files.append(fileName)
                     }
                 }
                 // 提权移动至Xcode相应目录
-                for (fromPath, toPath) in moveMap {
-                    let str = "/bin/mv \(fromPath) \(toPath)"
-                    let cmd = "do shell script \"\(str)\" with administrator privileges"
-                    let script = NSAppleScript.init(source: cmd)
-                    var errorInfo: NSDictionary?
-                    let descriptor = script?.executeAndReturnError(&errorInfo)
-                    print(descriptor ?? "")
-                }
+                moveFiles(cachedPath, xcodeSnippetsPath, files)
             } catch {
                 // TODO: 异常处理
                 print(error)
             }
+        }
+    }
+    
+    fileprivate func moveFiles(_ fromPath: String, _ toPath: String, _ files: [String]) {
+        var listOfFiles = ""
+        for fileName in files {
+            if listOfFiles.count > 0 {
+                listOfFiles += ", \"\(fileName)\""
+            } else {
+                listOfFiles += "\"\(fileName)\""
+            }
+        }
+        let sourceFolder = kFCHardDiskName + fromPath.replacingOccurrences(of: kFCFilePathPrefix, with: "").replacingOccurrences(of: "/", with: ":")
+        let goFolder = kFCHardDiskName + toPath.replacingOccurrences(of: kFCFilePathPrefix, with: "").replacingOccurrences(of: "/", with: ":")
+        
+        var scpt = """
+            set listOfFiles to {FCScptFilesName}
+            tell application "Finder"
+                open folder "FCScptGoFolder"
+                set sourceFolder to folder "FCScptSourceFolder"
+                set goFolder to folder "FCScptGoFolder"
+                set goFiles to every file of sourceFolder whose name is in listOfFiles
+                move goFiles to goFolder
+            
+            end tell
+            """
+        scpt = scpt.replacingOccurrences(of: kFCScptFilesName, with: listOfFiles).replacingOccurrences(of: kFCScptSourceFolder, with: sourceFolder).replacingOccurrences(of: kFCScptGoFolder, with: goFolder)
+
+        let scptPath = fromPath.replacingOccurrences(of: kFCFolderName, with: "").appending("moveFile.scpt")
+        if let scptURL = URL.init(string: scptPath) {
+            try? FileManager.default.removeItem(at: scptURL)
+            try? scpt.data(using: .utf8)?.write(to: scptURL)
+            NSWorkspace.shared.openFile(scptPath)
         }
     }
 }
