@@ -18,7 +18,6 @@ import CommonCrypto
  
 */
 
-let HZCodeSnippetIdentifierPrefix = "com.hertzwang.fast-code.identifier.prefix"
 
 class HZConfigModel: NSObject {
     var prefix: String = "" /// 代码块前缀
@@ -63,6 +62,45 @@ class HZConfigModel: NSObject {
         return result
     }
     
+    /// 写入到文件的数据
+    func data() -> Data? {
+        var text = """
+            <?xml version="1.0" encoding="UTF-8"?>
+            <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+            <plist version="1.0">
+            <dict>
+                <key>IDECodeSnippetCompletionPrefix</key>
+                <string>代码块前缀</string>
+                <key>IDECodeSnippetCompletionScopes</key>
+                <array>
+                    <string>代码块作用域</string>
+                </array>
+                <key>IDECodeSnippetContents</key>
+                <string>代码块内容</string>
+                <key>IDECodeSnippetIdentifier</key>
+                <string>代码块唯一标识符</string>
+                <key>IDECodeSnippetLanguage</key>
+                <string>Xcode.SourceCodeLanguage.Objective-C</string>
+                <key>IDECodeSnippetSummary</key>
+                <string>代码块概要</string>
+                <key>IDECodeSnippetTitle</key>
+                <string>代码块标题</string>
+                <key>IDECodeSnippetUserSnippet</key>
+                <true/>
+                <key>IDECodeSnippetVersion</key>
+                <integer>2</integer>
+            </dict>
+            </plist>
+            """
+        text = text.replacingOccurrences(of: kFCIDECodeSnippetCompletionPrefix, with: self.prefix)
+        text = text.replacingOccurrences(of: kFCIDECodeSnippetCompletionScopes, with: self.scopes)
+        text = text.replacingOccurrences(of: kFCIDECodeSnippetContents, with: self.contents)
+        text = text.replacingOccurrences(of: kFCIDECodeSnippetIdentifier, with: self.identifier)
+        text = text.replacingOccurrences(of: kFCIDECodeSnippetSummary, with: self.summary)
+        text = text.replacingOccurrences(of: kFCIDECodeSnippetTitle, with: self.title)
+        return text.data(using: .utf8) ?? data()
+    }
+    
     fileprivate func dictValue() -> [String: String] {
         return [
             "prefix" : self.prefix,
@@ -70,7 +108,7 @@ class HZConfigModel: NSObject {
             "title" : self.prefix,
             "summary" : self.prefix,
             "scopes" : "All",
-            "identifier" : HZCodeSnippetIdentifierPrefix.appending(self.prefix).hz_md5()
+            "identifier" : kFCSnippetIdentifierPrefix.appending(self.prefix).hz_md5()
         ]
     }
 }

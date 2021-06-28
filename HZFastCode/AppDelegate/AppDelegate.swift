@@ -35,28 +35,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     ///
     /// - Parameter sender: 按钮
     @IBAction func showHelpWindow(_ sender: Any) {
-        NotificationCenter.default.post(name: NSNotification.Name.init(HZEnumNotification), object: HZEnumNotificationModel.`init`(.help))
+        NotificationCenter.default.post(name: NSNotification.Name.init(kFCEnumNotification), object: HZEnumNotificationModel.`init`(.help))
     }
     
     /// 导入配置
     ///
     /// - Parameter sender: 导入按钮
     @IBAction func importConfigAction(_ sender: Any) {
-        NotificationCenter.default.post(name: NSNotification.Name.init(HZEnumNotification), object: HZEnumNotificationModel.`init`(.import))
+        NotificationCenter.default.post(name: NSNotification.Name.init(kFCEnumNotification), object: HZEnumNotificationModel.`init`(.import))
     }
     
     /// 导出配置
     ///
     /// - Parameter sender: 导出按钮
     @IBAction func exportConfigAction(_ sender: Any) {
-        NotificationCenter.default.post(name: NSNotification.Name.init(HZEnumNotification), object: HZEnumNotificationModel.`init`(.export))
+        NotificationCenter.default.post(name: NSNotification.Name.init(kFCEnumNotification), object: HZEnumNotificationModel.`init`(.export))
     }
     
     /// 清空配置
     ///
     /// - Parameter sender: 清空按钮
     @IBAction func emptyConfigAction(_ sender: Any) {
-        NotificationCenter.default.post(name: NSNotification.Name.init(HZEnumNotification), object: HZEnumNotificationModel.`init`(.empty))
+        NotificationCenter.default.post(name: NSNotification.Name.init(kFCEnumNotification), object: HZEnumNotificationModel.`init`(.empty))
     }
     
 }

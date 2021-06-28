@@ -8,12 +8,6 @@
 
 import Cocoa
 
-let HZEnumNotification = "com.hertzwang.fastcode.enum"
-
-let HZUserConfigSuiteName = "group.com.hertzwang.fast-code"
-let MappingOldKey = "HZMappingKey"
-let MappingKey = "HZModelMappingKey"
-
 class HZUserConfig: NSObject {
     static let shared = HZUserConfig.init()
     var sharedUserDefaults: UserDefaults!
@@ -21,13 +15,13 @@ class HZUserConfig: NSObject {
     var mapping = [String: HZConfigModel]()
     
     private override init() {
-        sharedUserDefaults = UserDefaults(suiteName: HZUserConfigSuiteName)
-        if let map = sharedUserDefaults.value(forKey: MappingOldKey) as? [String: String] {
+        sharedUserDefaults = UserDefaults(suiteName: kFCUserConfigSuiteName)
+        if let map = sharedUserDefaults.value(forKey: kFCMappingOldKey) as? [String: String] {
             for (key, value) in map {
                 mapping[key] = HZConfigModel.model(key, value)
             }
         }
-        if let map = sharedUserDefaults.value(forKey: MappingKey) as? [String: String] {
+        if let map = sharedUserDefaults.value(forKey: kFCMappingKey) as? [String: String] {
             for (key, json) in map {
                 mapping[key] = HZConfigModel.model(json)
             }
@@ -36,7 +30,7 @@ class HZUserConfig: NSObject {
     
     /// 保存数据
     func saveMapping(_ map: [String : HZConfigModel]) {
-        self.sharedUserDefaults.set(stringMapping(map), forKey: MappingKey)
+        self.sharedUserDefaults.set(stringMapping(map), forKey: kFCMappingKey)
         self.sharedUserDefaults.synchronize()
         mapping = map
     }
@@ -62,9 +56,9 @@ class HZUserConfig: NSObject {
     
     /// 清空旧数据
     func cleanOldData() {
-        if let map = sharedUserDefaults.value(forKey: MappingOldKey) as? [String: String] {
+        if let map = sharedUserDefaults.value(forKey: kFCMappingOldKey) as? [String: String] {
             if map.count > 0 {
-                self.sharedUserDefaults.removeObject(forKey: MappingOldKey)
+                self.sharedUserDefaults.removeObject(forKey: kFCMappingOldKey)
                 saveMapping(mapping)
             }
         }
@@ -78,5 +72,42 @@ class HZUserConfig: NSObject {
             result[key] = model.jsonValue()
         }
         return result
+    }
+    
+    func outputXMLFile() {
+        let fm = FileManager.default
+        if let documentDirectory = fm.urls(for: .documentDirectory, in: .userDomainMask).first?.absoluteString as NSString? {
+            do {
+                let cachedPath = documentDirectory.appending(kFCFolderName)
+                if let folderPath = URL.init(string: cachedPath) {
+                    try fm.createDirectory(at: folderPath, withIntermediateDirectories: true, attributes: nil)
+                }
+                let loc = documentDirectory.range(of: kFCPathKeyword).location
+                let xcodeSnippetsPath = "\(documentDirectory.substring(to: loc))Library/Developer/Xcode/UserData/CodeSnippets"
+                var moveMap = [String: String]()
+                let mapping = HZUserConfig.shared.mapping
+                for (key, model) in mapping {
+                    let filePath = "\(cachedPath)/fast_code_custom_" + key + ".codesnippet"
+                    let outPath = "\(xcodeSnippetsPath)/fast_code_custom_" + key + ".codesnippet"
+                    if let fileURL = URL.init(string: filePath) {
+                        try? fm.removeItem(at: fileURL)
+                        try model.data()?.write(to: fileURL)
+                        moveMap[filePath.replacingOccurrences(of: kFCFilePathPrefix, with: "")] = outPath.replacingOccurrences(of: kFCFilePathPrefix, with: "")
+                    }
+                }
+                // 提权移动至Xcode相应目录
+                for (fromPath, toPath) in moveMap {
+                    let str = "/bin/mv \(fromPath) \(toPath)"
+                    let cmd = "do shell script \"\(str)\" with administrator privileges"
+                    let script = NSAppleScript.init(source: cmd)
+                    var errorInfo: NSDictionary?
+                    let descriptor = script?.executeAndReturnError(&errorInfo)
+                    print(descriptor ?? "")
+                }
+            } catch {
+                // TODO: 异常处理
+                print(error)
+            }
+        }
     }
 }

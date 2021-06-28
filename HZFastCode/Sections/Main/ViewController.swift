@@ -67,7 +67,7 @@ class ViewController: NSViewController {
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(enumNotification),
-                                               name: NSNotification.Name.init(HZEnumNotification),
+                                               name: NSNotification.Name.init(kFCEnumNotification),
                                                object: nil)
     }
 
@@ -307,11 +307,11 @@ class ViewController: NSViewController {
         alert.addButton(withTitle: "确定")
         alert.addButton(withTitle: "取消") // 默认为取消操作
         alert.messageText = "提示"
-        alert.informativeText = "确认使用当前所有配置？"
-        alert.alertStyle = .warning
+        alert.informativeText = "应用所有配置？"
+        alert.alertStyle = .critical
         alert.beginSheetModal(for: self.view.window!) { (returnCode) in
             if returnCode.rawValue == NSApplication.ModalResponse.alertFirstButtonReturn.rawValue {
-                
+                HZUserConfig.shared.outputXMLFile()
             }
         }
     }
@@ -365,7 +365,7 @@ extension ViewController: NSTableViewDelegate {
             return
         }
         let item = self.dataArray[self.tableView.selectedRow]
-        if let html = self.htmlCode?.replacingOccurrences(of: kHZCodeShowPlaceholderText, with: item.contents) {
+        if let html = self.htmlCode?.replacingOccurrences(of: kFCShowPlaceholderText, with: item.contents) {
             self.codeWebView.mainFrame.loadHTMLString(html, baseURL: URL.init(fileURLWithPath: self.showCodeFilePath!))
         }
     }

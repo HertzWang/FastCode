@@ -8,7 +8,24 @@
 
 import Cocoa
 
-let kHZCodeShowPlaceholderText = "SHOW_CODE_PLACEHOLDER"
+let kFCShowPlaceholderText = "SHOW_CODE_PLACEHOLDER"
+let kFCSnippetIdentifierPrefix = "com.hertzwang.fast-code.identifier.prefix"
+let kFCEnumNotification = "com.hertzwang.fastcode.enum"
+let kFCUserConfigSuiteName = "group.com.hertzwang.fast-code"
+let kFCMappingOldKey = "HZMappingKey"
+let kFCMappingKey = "HZModelMappingKey"
+let kFCPathKeyword = "Library/Containers"
+let kFCFolderName = "CodeSnippets"
+let kFCExpandedName = ".codesnippet"
+let kFCFilePathPrefix = "file://"
+
+// code
+let kFCIDECodeSnippetCompletionPrefix = "代码块前缀"
+let kFCIDECodeSnippetCompletionScopes = "代码块作用域"
+let kFCIDECodeSnippetContents = "代码块内容"
+let kFCIDECodeSnippetIdentifier = "代码块唯一标识符"
+let kFCIDECodeSnippetSummary = "代码块概要"
+let kFCIDECodeSnippetTitle = "代码块标题"
 
 class HZAppMacro: NSObject {
 
